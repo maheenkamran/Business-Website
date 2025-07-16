@@ -3,8 +3,8 @@ import './Header.css';
 function Header() {
     return (
         <div className="header-container">
-            <img id="logo"src="/images/logo.png" alt="logo"></img>
-            <div id="brand-name">Brand</div>
+            <img id="logo"src="/images/icon.png" alt="logo"></img>
+            <div id="brand-name">BRAND</div>
             <input id="search-bar"placeholder='Search'></input>
             <button id="search-button">Search</button>
             

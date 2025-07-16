@@ -40,6 +40,10 @@
     cursor: pointer;
 }
 
+#search-button:hover{
+    background-color: rgb(249, 190, 94);
+}
+
 .profile {
     display: flex;
     flex-direction: column;
@@ -47,6 +51,7 @@
     padding: 5px;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 #profile-icon {
@@ -61,6 +66,7 @@
     padding: 5px;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 #message-icon {
@@ -75,6 +81,7 @@
     padding: 5px;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 #orders-icon {
@@ -89,6 +96,7 @@
     padding: 5px;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 #cart-icon {

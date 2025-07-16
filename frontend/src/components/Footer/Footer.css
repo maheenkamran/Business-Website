@@ -1,0 +1,50 @@
+.footer-container {
+    margin-top: 50px;
+}
+
+.newsletter {
+    background-color: rgb(247, 224, 200);
+    font-weight: bold;
+    font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:20px;
+}
+
+#extra-text {
+    padding-top: 10px;
+    font-size: 18px;
+    font-weight: normal;
+    color: rgb(56, 55, 55);
+}
+
+
+.email-container {
+    display: flex;
+    margin-top: 30px;
+}
+
+.input-box {
+    border: 0.5px rgb(95, 93, 93);
+    border-radius: 5px;
+    height: 30px;
+    width: 250px;
+    padding-left: 10px;
+}
+
+.subscribe-btn {
+    border: 0.5px rgb(95, 93, 93);
+    border-radius: 5px;
+    width: 100px;
+    height: 30px;
+    margin-left: 10px;
+    background-color: orange;
+    color: white;
+    cursor: pointer;
+}
+
+.subscribe-btn:hover{
+    background-color: rgb(249, 196, 97);
+}
