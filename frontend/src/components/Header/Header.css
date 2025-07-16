@@ -7,7 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: beige;
+    background-color: rgb(247, 224, 200);
 }
 
 #logo {
@@ -23,19 +23,19 @@
 }
 
 #search-bar {
-    margin-left: 100px;
+    margin-left: 125px;
     padding: 5px 5px 5px 10px;
-    width: 320px;
+    width: 350px;
     height: 20px;
-    border: 1px solid rgb(122, 147, 212);
+    border: 1px solid rgb(243, 153, 9);
 }
 
 #search-button {
     height: 31px;
     width: 100px;
     padding: 5px 5px 5px 5px;
-    background-color: rgb(122, 147, 212);
-    border: 1px solid rgb(122, 147, 212);
+    background-color: rgb(243, 153, 9);
+    border: 1px solid rgb(243, 153, 9);
     color: white;
     cursor: pointer;
 }
@@ -43,7 +43,7 @@
 .profile {
     display: flex;
     flex-direction: column;
-    margin-left: 100px;
+    margin-left: 125px;
     padding: 5px;
     align-items: center;
     justify-content: center;
