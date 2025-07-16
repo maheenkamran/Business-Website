@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: beige;
+}
+
+#logo {
+    width: 44px;
+    height: 44px;
+    padding-left: 10px;
+}
+
+#brand-name {
+    margin-left: 20px;
+    font-size: 24px;  
+    text-decoration: bold;
+}
+
+#search-bar {
+    margin-left: 100px;
+    padding: 5px 5px 5px 10px;
+    width: 320px;
+    height: 20px;
+    border: 1px solid rgb(122, 147, 212);
+}
+
+#search-button {
+    height: 31px;
+    width: 100px;
+    padding: 5px 5px 5px 5px;
+    background-color: rgb(122, 147, 212);
+    border: 1px solid rgb(122, 147, 212);
+    color: white;
+    cursor: pointer;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    margin-left: 100px;
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+#profile-icon {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+#message-icon {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.orders {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+#orders-icon {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.cart {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+#cart-icon {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
