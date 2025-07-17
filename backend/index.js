@@ -1,11 +1,24 @@
 const express = require("express");
 const cors = require("cors");
+const connectDB=require("./db.js");
+const userRoutes = require('./Routes/userRoutes');
 
 const app = express();
 
 app.use(cors());
-app.use(express());
+app.use(express.json());
+
+connectDB();
+
+//For anything starting with /api/users, go to userRoutes file to figure out what to do next.
+app.use('/api/users', userRoutes);
 
 app.get('/', (req, res) => {
-    console.log("Hello from backend!");
+    res.send("Hello from backend!");
+})
+
+app.use('/api/users', userRoutes);
+
+app.listen(3000, () => {
+    console.log('Server is running on http://localhost:3000');
 })
