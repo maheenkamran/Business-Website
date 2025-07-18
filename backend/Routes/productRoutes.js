@@ -2,9 +2,9 @@ const express = require('express');
 const Router = express.Router();
 const Product = require("../models/Product");
 
-Router.post('/',async(req,res)=>{
+Router.post('/', async (req, res) => {
     try {
-        const newProduct=new Product(req.body);
+        const newProduct = new Product(req.body);
         await newProduct.save();
 
         console.log(req.body);
@@ -16,9 +16,25 @@ Router.post('/',async(req,res)=>{
     }
 })
 
+// Router.get('/', async (req, res) => {
+//     try {
+//         const products=await Product.find();
+//         res.status(200).json(products);
+//     }
+//     catch (err) {
+//         console.log("error");
+//         res.status(400).send({ error: err.message });
+//     }
+// })
+
 Router.get('/', async (req, res) => {
     try {
-        const products=await Product.find();
+        const { category } = req.query;
+        //This is using JavaScript object destructuring to extract a specific value from the req.query object.
+        //now you can directly use the variable category in your code instead of writing req.query.category.
+        //console.log(category);
+        
+        const products = await Product.find({ category });
         res.status(200).json(products);
     }
     catch (err) {
