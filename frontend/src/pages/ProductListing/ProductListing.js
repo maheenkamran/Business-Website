@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header.js";
 import Footer from "../../components/Footer/Footer.js"
 import './ProductListing.css'
@@ -25,6 +26,12 @@ function ProductListing() {
     fetchProducts();
   }, [category]);
 
+  const navigate = useNavigate();
+
+  const handleproductclick = (id) => {
+    navigate(`/product-details?id=${id}`);
+  }
+
   return (
     <>
       <Header />
@@ -36,7 +43,8 @@ function ProductListing() {
           (
             <div className="products-container">
               {Products.map((p) => (
-                <div className="product-item">
+                <div className="product-item" onClick={() => { handleproductclick(p._id) }}>
+                  {console.log(p._id)}
                   <div className="product-image">
                     <img src={p.image} alt="product"></img>
                   </div>

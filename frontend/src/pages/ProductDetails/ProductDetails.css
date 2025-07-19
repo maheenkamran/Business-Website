@@ -1,0 +1,114 @@
+.p-item {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    margin: 50px 80px 20px 80px;
+    /* TRouBLe */
+    border: 1px solid rgb(230, 228, 228);
+}
+
+.p-image img {
+    border: 1px rgb(230, 228, 228) solid;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    margin: 0px 30px 50px 0px;
+}
+
+.product-attributes {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Stock */
+.p-stock-true {
+    display: flex;
+    color: green;
+}
+
+.p-stock-true p {
+    margin-left: 10px;
+}
+
+.fa-solid fa-check {
+    color: green;
+}
+
+.p-stock-false {
+    display: flex;
+    color: red;
+}
+
+.p-stock-false p {
+    margin-left: 10px;
+}
+
+.fa-solid fa-xmark {
+    color: red;
+}
+
+/* prices - name */
+
+.p-name {
+    margin: 20px 0px 20px 0px;
+    font-size: 30px;
+    font-weight: 500
+}
+
+.p-price {
+    color: rgb(230, 155, 15);
+    font-weight: 500;
+    font-size: 24px;
+}
+
+/* quantity */
+.p-quantity {
+    margin: 20px 0px 20px 0px;
+    display: flex;
+    flex-direction: row;
+    color: rgb(65, 65, 65);
+}
+
+.p-quantity p {
+    margin-top: 5px;
+    color: rgb(65, 65, 65);
+}
+
+.qty-num {
+    margin: 5px 0px 0px 10px;
+}
+
+.p-quantity button {
+    margin-left: 10px;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgb(188, 186, 186);
+    cursor: pointer;
+}
+
+.add-to-cart-btn {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    height: 35px;
+    border: none;
+    background-color: rgb(254, 190, 70);
+    cursor: pointer;
+}
+
+.buy-now-btn {
+    height: 35px;
+    border: none;
+    background-color: rgb(122, 193, 122);
+    cursor: pointer;
+}
+
+/* delivery */
+
+.delivery-details {
+    border: 1px solid rgb(230, 228, 228);
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    width: 300px;
+    /* Push this element as far to the right as the layout allows. */
+}

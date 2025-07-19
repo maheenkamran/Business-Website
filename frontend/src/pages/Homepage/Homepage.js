@@ -18,6 +18,7 @@ function Homepage() {
       <div id="title"><h>Choose your category</h></div>
 
       <div className="categories">
+        {/* ShoesBooksToys & GamesBeaityandPersoanlCare  */}
         <div className="c-name" onClick={()=>{handlecategory('Home')}}>
           <i className="c-icon fa-solid fa-house"></i>
           <p className="c-title">Home</p>

@@ -33,14 +33,24 @@ Router.get('/', async (req, res) => {
         //This is using JavaScript object destructuring to extract a specific value from the req.query object.
         //now you can directly use the variable category in your code instead of writing req.query.category.
         //console.log(category);
-        
+
         const products = await Product.find({ category });
         res.status(200).json(products);
     }
     catch (err) {
-        console.log("error");
         res.status(400).send({ error: err.message });
     }
 })
 
+Router.get('/details', async (req, res) => {
+    try {
+        const { id } = req.query;
+        const productDetail = await Product.find({ _id: id });
+        res.status(200).json(productDetail);
+
+    }
+    catch (err) {
+        res.status(400).send({ error: err.message });
+    }
+})
 module.exports = Router;
