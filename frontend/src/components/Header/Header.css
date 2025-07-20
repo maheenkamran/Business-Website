@@ -103,3 +103,46 @@
     margin-top: 5px;
     margin-bottom: 5px;
 }
+
+.bottom-header {
+    height: 40px;
+    border: 1px solid rgb(196, 194, 194);
+    background-color: antiquewhite;
+    z-index: 10;
+    position: relative;
+}
+
+.all-category-menu {
+    position: relative;
+}
+
+.bottom-header .category-container {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 100%;
+    /* puts it below the trigger */
+    background-color: antiquewhite;
+    width: 200px;
+    height: 240px;
+    padding: 10px;
+    transition: opacity 0.3 ease;
+    z-index: 1;
+}
+
+.all-category-menu:hover .category-container,
+.category-container:hover {
+    opacity: 1;
+    visibility: visible;
+}
+
+.c-type {
+    margin: 10px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.c-type:hover {
+    background-color: rgb(255, 245, 232);
+
+}

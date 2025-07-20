@@ -1,30 +1,57 @@
 import './Header.css';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
+
+    const navigate = useNavigate();
+
+    const navigateCategory = (category) => {
+        navigate(`/products?category=${category}`);
+    }
     return (
-        <div className="header-container">
-            <img id="logo"src="/images/icon.png" alt="logo"></img>
-            <div id="brand-name">BRAND</div>
-            <input id="search-bar"placeholder='Search'></input>
-            <button id="search-button">Search</button>
-            
-            <div className="profile">
-                <i id="profile-icon" className="fa-solid fa-user"></i>
-                <p id="profile-text ">Profile</p>
+        <>
+            <div className="header-container">
+                <img id="logo" src="/images/icon.png" alt="logo"></img>
+                <div id="brand-name">BRAND</div>
+                <input id="search-bar" placeholder='Search'></input>
+                <button id="search-button">Search</button>
+
+                <div className="profile">
+                    <i id="profile-icon" className="fa-solid fa-user"></i>
+                    <p id="profile-text ">Profile</p>
+                </div>
+                <div className="message">
+                    <i id="message-icon" className="fa-solid fa-message"></i>
+                    <p id="message-text ">Message</p>
+                </div>
+                <div className="orders">
+                    <i id="orders-icon" className="fa-solid fa-heart"></i>
+                    <p id="orders-text ">Orders</p>
+                </div>
+                <div className="cart">
+                    <i id="cart-icon" className="fa-solid fa-cart-shopping"></i>
+                    <p id="cart-text ">My Cart</p>
+                </div>
             </div>
-             <div className="message">
-                <i id="message-icon" className="fa-solid fa-message"></i>
-                <p id="message-text ">Message</p>
+
+            <div className='bottom-header'>
+                <div className='all-category-menu'>
+                    <i className="fa-solid fa-bars"></i>
+                    <p>All category</p>
+
+                    <div className='category-container'>
+                        <div className='c-type' onClick={() => { navigateCategory('Home') }}>Home</div>
+                        <div className='c-type' onClick={() => { navigateCategory('Accessories') }}>Accessories</div>
+                        <div className='c-type' onClick={() => { navigateCategory('Clothing') }}>Clothing</div>
+                        <div className='c-type' onClick={() => { navigateCategory('Furniture') }}>Furniture</div>
+                        <div className='c-type' onClick={() => { navigateCategory('Electronics') }}>Electronics</div>
+                        <div className='c-type' onClick={() => { navigateCategory('Sports') }}>Sports</div>
+                    </div>
+                </div>
+
             </div>
-             <div className="orders">
-                <i id="orders-icon" className="fa-solid fa-heart"></i>
-                <p id="orders-text ">Orders</p>
-            </div>
-             <div className="cart">
-                <i id="cart-icon" className="fa-solid fa-cart-shopping"></i>
-                <p id="cart-text ">My Cart</p>
-            </div>
-        </div>
+
+        </>
     );
 }
 

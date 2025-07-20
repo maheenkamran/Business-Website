@@ -2,6 +2,11 @@
     font-family: 'Inter', sans-serif;
 }
 
+.page-setup {
+    display: flex;
+    align-items: flex-start;
+}
+
 .products-container {
     margin-top: 40px;
     display: flex;
@@ -19,8 +24,8 @@
 }
 
 .product-image img {
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
     object-fit: cover;
     /* keeps aspect ratio, crops overflow */
     border-bottom: 1px solid rgb(220, 217, 217);

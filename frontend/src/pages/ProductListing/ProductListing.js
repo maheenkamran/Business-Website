@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header.js";
 import Footer from "../../components/Footer/Footer.js"
+import FilterPanel from "../../components/FilterPanel/FilterPanel.js";
 import './ProductListing.css'
 
 function ProductListing() {
@@ -35,27 +36,32 @@ function ProductListing() {
   return (
     <>
       <Header />
-      {
-        Products.length === 0 ?
-          (
-            <h3>NO products available</h3>
-          ) :
-          (
-            <div className="products-container">
-              {Products.map((p) => (
-                <div className="product-item" onClick={() => { handleproductclick(p._id) }}>
-                  {console.log(p._id)}
-                  <div className="product-image">
-                    <img src={p.image} alt="product"></img>
+      <div className="page-setup">
+        <div className="filterpanel-container"><FilterPanel />
+        </div>
+
+        {
+          Products.length === 0 ?
+            (
+              <h3>NO products available</h3>
+            ) :
+            (
+              <div className="products-container">
+                {Products.map((p) => (
+                  <div className="product-item" onClick={() => { handleproductclick(p._id) }}>
+                    {console.log(p._id)}
+                    <div className="product-image">
+                      <img src={p.image} alt="product"></img>
+                    </div>
+                    <div className="product-price">Rs.{p.price}</div>
+                    <div className="product-name">{p.name}</div>
                   </div>
-                  <div className="product-price">Rs.{p.price}</div>
-                  <div className="product-name">{p.name}</div>
-                </div>
-              ))
-              }
-            </div>
-          )
-      }
+                ))
+                }
+              </div>
+            )
+        }
+      </div>
       <Footer />
     </>
   );
