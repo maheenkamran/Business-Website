@@ -105,11 +105,12 @@
 }
 
 .bottom-header {
-    height: 40px;
+    height: 36px;
     border: 1px solid rgb(196, 194, 194);
     background-color: antiquewhite;
     z-index: 10;
     position: relative;
+    display: flex;
 }
 
 .all-category-menu {
@@ -145,4 +146,17 @@
 .c-type:hover {
     background-color: rgb(255, 245, 232);
 
+}
+
+.deliver-text {
+    margin-left: auto;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.flag-image {
+    padding: 10px 50px 10px 0px;
+    width: 23px;
+    height: 15px;
 }

@@ -30,7 +30,7 @@ function ProductDetails() {
     }, [id])
 
     const minusQty = (q) => {
-        if (q > 0)
+        if (q > 1)
             setQty(q => q - 1);
 
     }

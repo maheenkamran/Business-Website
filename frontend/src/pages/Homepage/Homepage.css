@@ -1,6 +1,8 @@
 .slide {
-  width: 100vw;             /* full viewport width */
-  height: 30vw;             /* adjusts height based on image ratio */
+  width: 100vw;
+  /* full viewport width */
+  height: 30vw;
+  /* adjusts height based on image ratio */
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -8,21 +10,22 @@
   margin-top: 30px;
 }
 
-#title{
-    text-align: center;
-    justify-content: center;
-    margin: 50px 10px 50px 10px;
-    font-weight: bolder;
-    font-size: 40px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow';
+#title {
+  text-align: center;
+  justify-content: center;
+  margin: 20px 10px 50px 10px;
+  font-weight: bolder;
+  font-size: 36px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow';
 }
 
-.categories{
+.categories {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.c-name{
+
+.c-name {
   border: 1px solid rgba(142, 137, 137, 0.283);
   width: 10vw;
   box-shadow: 0px 4px 10px rgba(72, 71, 71, 0.5);
@@ -38,16 +41,16 @@
   margin: 0px 10px 10px;
 }
 
-.c-icon{
+.c-icon {
   font-size: 25px;
 }
 
-.c-title{
-margin-top: 10px;
-font-weight: bold;
+.c-title {
+  margin-top: 10px;
+  font-weight: bold;
 }
 
-.c-name:hover{
+.c-name:hover {
   background-color: orange;
-  color:white;  
+  color: white;
 }

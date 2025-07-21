@@ -41,7 +41,20 @@ Router.get('/', async (req, res) => {
         res.status(400).send({ error: err.message });
     }
 })
+Router.get('/price', async (req, res) => {
+    try {
+        const { category, min, max } = req.query;
 
+        const products = await Product.find({
+            category: category,
+            price: { $gte: Number(min), $lte: Number(max) }
+        });
+        res.status(200).json(products);
+    }
+    catch (err) {
+        res.status(400).send({ error: err.message });
+    }
+})
 Router.get('/details', async (req, res) => {
     try {
         const { id } = req.query;

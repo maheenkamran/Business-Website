@@ -15,6 +15,15 @@
 
 .filter-section p {
     font-weight: bold;
+    padding-bottom: 5px;
+}
+
+.category-type {
+    padding: 3px;
+}
+
+.category-type:hover {
+    text-decoration: underline;
 }
 
 .condition-section {

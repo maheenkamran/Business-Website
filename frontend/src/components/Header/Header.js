@@ -48,8 +48,10 @@ function Header() {
                         <div className='c-type' onClick={() => { navigateCategory('Sports') }}>Sports</div>
                     </div>
                 </div>
+                <div className="deliver-text">Deliver To</div>
+                <img className="flag-image" src=" /images/pak-flag.png" alt="flag"></img>
 
-            </div>
+            </div >
 
         </>
     );

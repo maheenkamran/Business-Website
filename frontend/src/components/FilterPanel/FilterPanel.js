@@ -2,6 +2,7 @@ import './FilterPanel.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PriceRange from '../PriceRange/PriceRange.js';
+import { useSearchParams } from 'react-router-dom';
 
 function FilterPanel() {
 
@@ -32,6 +33,12 @@ function FilterPanel() {
         navigate(`/products?category=${category}`);
     }
 
+    const [searchParams] = useSearchParams();
+    const category = searchParams.get('category');
+
+    const navigatePrice = (min, max) => {
+        navigate(`/products/price?category=${category}&min=${min}&max=${max}`);
+    }
     const [price, setPrice] = useState([0, 50000]);
 
     return (
@@ -72,6 +79,7 @@ function FilterPanel() {
                                     <input placeholder='99999' value={price[1]}
                                         onChange={(e) => { setPrice([price[0], +e.target.value]) }}></input>
                                 </div>
+                                <button className='apply-btn' onClick={() => { navigatePrice(price[0], price[1]) }}>Apply</button>
                             </div>
                         </div>
                     ) : (<p></p>)}
