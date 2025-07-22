@@ -9,22 +9,20 @@ router.post('/', async (req, res) => {
     const newUser = new User(req.body);
     await newUser.save();
 
-    console.log("Request Body:", req.body);
     res.status(201).send(newUser);
-  } catch (err) {
-    console.log("error");
+  }
+  catch (err) {
     res.status(400).send({ error: err.message });
   }
 });
 
-router.get('/',async(req,res)=>{
-  try{
-    const users= await User.find();
+router.get('/', async (req, res) => {
+  try {
+    const users = await User.find();
     res.status(200).json(users);
   }
-  catch(err){
-    console.log("error");
-    res.status(400).send({error:err.message});
+  catch (err) {
+    res.status(400).send({ error: err.message });
   }
 })
 

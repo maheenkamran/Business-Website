@@ -10,22 +10,35 @@ function ProductListing() {
 
   const [searchParams] = useSearchParams();
   const category = searchParams.get('category'); //value of caetgory key -> key value pair in search params
+  const min = searchParams.get('min');
+  const max = searchParams.get('max');
+  const condition = searchParams.get('condition');
   const [Products, setProducts] = useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const result = await fetch(`http://localhost:3000/api/products?category=${category}`);
+        let url = "";
+        if (min && max)
+          url = `http://localhost:3000/api/products/price?category=${category}&min=${min}&max=${max}`;
+        else if ((condition !== 'Any') && (condition))
+          url = `http://localhost:3000/api/products/condition?category=${category}&condition=${condition}`;
+        else if (condition === 'Any')
+          url = `http://localhost:3000/api/products?category=${category}`;
+        else
+          url = `http://localhost:3000/api/products?category=${category}`;
+
+        const result = await fetch(url);
         const data = await result.json();
 
-        setProducts(data);
+        setProducts(data); //populates Products array
       }
       catch (err) {
         console.log({ err: err.message });
       }
     }
     fetchProducts();
-  }, [category]);
+  }, [category, min, max, condition]); //dependency array
 
   const navigate = useNavigate();
 
@@ -49,7 +62,6 @@ function ProductListing() {
               <div className="products-container">
                 {Products.map((p) => (
                   <div className="product-item" onClick={() => { handleproductclick(p._id) }}>
-                    {console.log(p._id)}
                     <div className="product-image">
                       <img src={p.image} alt="product"></img>
                     </div>

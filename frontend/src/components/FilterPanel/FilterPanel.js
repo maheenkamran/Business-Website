@@ -37,10 +37,15 @@ function FilterPanel() {
     const category = searchParams.get('category');
 
     const navigatePrice = (min, max) => {
-        navigate(`/products/price?category=${category}&min=${min}&max=${max}`);
+        navigate(`/products?category=${category}&min=${min}&max=${max}`);
+        //react changes url and moves to product details page, fetch mein backend wala route dena
+        //this is for frontend
     }
     const [price, setPrice] = useState([0, 50000]);
 
+    const navigateCondition = (condition) => {
+        navigate(`/products?category=${category}&condition=${condition}`);
+    }
     return (
         <>
             <div className='filterpanel-box'>
@@ -90,10 +95,11 @@ function FilterPanel() {
                     </p>
                     {conditionSection ? (
                         <div className='condition-section'>
-                            <label><input type='radio' />Any</label>
-                            <label><input type='radio' />Refurbished</label>
-                            <label><input type='radio' />Brand New</label>
-                            <label><input type='radio' />Old Items</label>
+                            <label><input type='radio' name="condition-input" onClick={() => { navigateCondition('Any') }} />Any</label>
+                            <label><input type='radio' name="condition-input" onClick={() => { navigateCondition('Brand New') }} />Brand New</label>
+                            <label><input type='radio' name="condition-input" onClick={() => { navigateCondition('Refurbished') }} />Refurbished</label>
+                            <label><input type='radio' name="condition-input" onClick={() => { navigateCondition('Old Items') }} />Old Items</label>
+                            {/* by giving all same name, we ensure aik option select hou only */}
                         </div>
                     ) : (<p></p>)}
                 </div>

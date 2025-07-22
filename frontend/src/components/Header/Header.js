@@ -8,6 +8,7 @@ function Header() {
     const navigateCategory = (category) => {
         navigate(`/products?category=${category}`);
     }
+
     return (
         <>
             <div className="header-container">
@@ -16,19 +17,19 @@ function Header() {
                 <input id="search-bar" placeholder='Search'></input>
                 <button id="search-button">Search</button>
 
-                <div className="profile">
+                <div className="profile" onClick={() => { navigate(`/profile`) }}>
                     <i id="profile-icon" className="fa-solid fa-user"></i>
                     <p id="profile-text ">Profile</p>
                 </div>
-                <div className="message">
+                <div className="message" onClick={() => { navigate(`/messages`) }}>
                     <i id="message-icon" className="fa-solid fa-message"></i>
-                    <p id="message-text ">Message</p>
+                    <p id="message-text ">Messages</p>
                 </div>
-                <div className="orders">
+                <div className="orders" onClick={() => { navigate(`/orders`) }}>
                     <i id="orders-icon" className="fa-solid fa-heart"></i>
                     <p id="orders-text ">Orders</p>
                 </div>
-                <div className="cart">
+                <div className="cart" onClick={() => { navigate(`/cart`) }}>
                     <i id="cart-icon" className="fa-solid fa-cart-shopping"></i>
                     <p id="cart-text ">My Cart</p>
                 </div>
