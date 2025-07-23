@@ -29,6 +29,10 @@ const userSchema = new mongoose.Schema({
         unique: true,
         match: [/^\d{11}$/, 'Phone number must be 11 digits']
     },
+    password: {
+        type: String,
+        required: true
+    },
     city: {
         type: String,
         required: true

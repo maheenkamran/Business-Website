@@ -26,4 +26,45 @@ router.get('/', async (req, res) => {
   }
 })
 
+router.get('/verifyP', async (req, res) => {
+  try {
+    const { phone, password } = req.query;
+
+    const user = await User.findOne({ phone: phone, password: password });
+    if (!user || user.length === 0) {
+      res.status(400).send({ error: err.message });
+    }
+    res.status(200).json(user);
+  }
+  catch (err) {
+    res.status(400).send({ error: err.message });
+  }
+})
+router.get('/verifyE', async (req, res) => {
+  try {
+    const { email, password } = req.query;
+
+    const user = await User.findOne({ email: email, password: password });
+    if (!user || user.length === 0) {
+      res.status(400).send({ error: err.message });
+    }
+    res.status(200).json(user);
+  }
+  catch (err) {
+    res.status(400).send({ error: err.message });
+  }
+})
+router.get('/:userid', async (req, res) => {
+  try {
+    const { userid } = req.params;
+
+    const user = await User.find({ _id: userid });
+    if (!user) res.status(400).send('User not found.');
+    res.status(200).json(user);
+  }
+  catch (err) {
+    res.status(400).send({ error: err.message });
+  }
+})
+
 module.exports = router;

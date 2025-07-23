@@ -7,8 +7,6 @@ import Messages from './pages/Messages/Messages.js'
 import Orders from './pages/Orders/Orders.js'
 import Cart from './pages/Cart/Cart.js'
 
-import './App.css'
-
 function App() {
   return (
     <BrowserRouter>

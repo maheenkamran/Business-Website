@@ -13,5 +13,16 @@ router.post('/', async (req, res) => {
         res.status(400).send({ err: err.message });
     }
 })
+router.get('/:userid', async (req, res) => {
+    try {
+        const { userid } = req.params;
+        const orders = await Order.find({ userid: userid });
+
+        res.status(200).send(orders);
+    }
+    catch (err) {
+        res.status(400).send({ err: err.message });
+    }
+})
 
 module.exports = router;
