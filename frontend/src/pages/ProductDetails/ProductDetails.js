@@ -10,6 +10,7 @@ function ProductDetails() {
     const id = searchParams.get('id');
     const [product, setProduct] = useState(null);
     const [qty, setQty] = useState(1);
+    const user = JSON.parse(localStorage.getItem("user")); //make into obj, as otherwise it returns string
 
     useEffect(() => {
         const fetchResults = async () => {
@@ -37,6 +38,33 @@ function ProductDetails() {
     const addQty = (q) => {
         setQty(q => q + 1);
     }
+
+    const addToCart = async (userid, productid, quantity) => {
+        console.log(userid, " ", productid, " ", quantity);
+        try {
+            const res = await fetch(`http://localhost:3000/api/users/cart?userid=${userid}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/JSOn'
+                },
+                body: JSON.stringify({
+                    productid,
+                    quantity
+                })
+            });
+
+            const result = await res.json();
+
+            if (res.ok) {
+                console.log("Cart updated.", result);
+            } else {
+                console.log("Error: ", result);
+            }
+        }
+        catch (error) {
+            console.error("Network error:", error.message);
+        }
+    };
 
     return (<>
         <Header />
@@ -74,7 +102,7 @@ function ProductDetails() {
                             <p className='qty-num'>{qty}</p>
                             <button onClick={() => { addQty(qty) }}>+</button>
                         </div>
-                        <button className='add-to-cart-btn'>Add to Cart</button>
+                        <button className='add-to-cart-btn' onClick={() => { addToCart(user._id, product._id, qty) }}>Add to Cart</button>
                         <button className='buy-now-btn'>Buy Now</button>
                     </div>
 
