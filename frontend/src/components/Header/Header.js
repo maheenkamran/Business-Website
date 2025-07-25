@@ -5,6 +5,8 @@ function Header() {
 
     const navigate = useNavigate();
 
+    const user = JSON.parse(localStorage.getItem("user")); //user is now storing an object
+
     const navigateCategory = (category) => {
         navigate(`/products?category=${category}`);
     }
@@ -29,7 +31,7 @@ function Header() {
                     <i id="orders-icon" className="fa-solid fa-heart"></i>
                     <p id="orders-text ">Orders</p>
                 </div>
-                <div className="cart" onClick={() => { navigate(`/cart`) }}>
+                <div className="cart" onClick={() => { navigate(`/cart?id=${user._id}`) }}>
                     <i id="cart-icon" className="fa-solid fa-cart-shopping"></i>
                     <p id="cart-text ">My Cart</p>
                 </div>
