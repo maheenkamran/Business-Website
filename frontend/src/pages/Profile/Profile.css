@@ -66,12 +66,43 @@
 
 .profile-panel-section {
     background-color: white;
-    height: 490px;
+    height: 450px;
     width: 250px;
     margin: 20px 30px 20px 30px;
+    padding: 20px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+}
+
+.brandname {
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pp-line {
+    width: 220px;
+    height: 1px;
+    background-color: rgb(225, 225, 225);
+    margin: 20px 0px 20px 0px;
+}
+
+.pp-section {
+    padding: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 5px;
+    display: flex;
+}
+
+.pp-section:hover {
+    background-color: rgb(249, 242, 223);
+    cursor: pointer;
+}
+
+.pp-section p {
+    margin-left: 10px;
 }
 
 .profile-main-section {
@@ -173,15 +204,47 @@
 .pi-text {
     color: rgb(13, 82, 13);
     font-weight: bold;
-    font-size: 14px;
-    margin: 3px 30px 0px 5px;
+    font-size: 15px;
+    margin: 3px 30px 0px 20px;
 }
 
 .pi-line {
     width: 880px;
     height: 1px;
-    background-color: rgb(225, 225, 225);
+    background-color: rgb(104, 104, 104);
     margin: 10px 5px 10px 5px;
+}
+
+.name-dob {
+    display: flex;
+    padding-left: 20px;
+}
+
+.pi-fn {
+    margin: 0px 200px 15px 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pi-fn h {
+    color: rgb(105, 105, 105);
+    margin-bottom: 5px;
+}
+
+.email-phone {
+    display: flex;
+    padding-left: 20px;
+}
+
+.pi-email {
+    margin: 0px 105px 15px 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pi-email h {
+    color: rgb(105, 105, 105);
+    margin-bottom: 5px;
 }
 
 .address {
@@ -196,8 +259,9 @@
 .add-text {
     color: rgb(13, 82, 13);
     font-weight: bold;
-    font-size: 14px;
-    margin: 3px 30px 0px 5px;
+    font-size: 15px;
+    margin: 3px 30px 10px 0px;
+    padding-left: 20px;
 }
 
 .add-line {
@@ -205,4 +269,9 @@
     height: 1px;
     background-color: rgb(225, 225, 225);
     margin: 10px 5px 10px 5px;
+}
+
+.add-info {
+    display: flex;
+    padding-left: 20px;
 }

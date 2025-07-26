@@ -49,7 +49,16 @@ function Profile() {
         <>
             <Header />
             {isSignedIn ? (<div className='profile-container'>
-                <div className='profile-panel-section'></div>
+                <div className='profile-panel-section'>
+                    <div className='brandname'>brandname</div>
+                    <div className='pp-line'></div>
+                    <div className='pp-section' ><i class="fa-solid fa-house-user"></i><p>Dashboard</p></div>
+                    <div className='pp-section' ><i class="fa-solid fa-bag-shopping"></i><p>My Orders</p></div>
+                    <div className='pp-section' ><i class="fa-solid fa-message"></i><p>Reviews</p></div>
+                    <div className='pp-section' ><i class="fa-solid fa-clipboard-question"></i><p>About</p></div>
+                    <div className='pp-section' ><i class="fa-solid fa-address-book"></i><p>Contact</p></div>
+
+                </div>
                 <div className='profile-main-section'>
                     <div className='profile-search-bar'>
                         <div className='todays-date'>{date}</div>
@@ -72,18 +81,28 @@ function Profile() {
                     <div className='personal-info'>
                         <div className='pi-text'>Personal Information</div>
                         <div className='pi-line'></div>
-                        <div className='pi-fn'>{user.Fname}</div>
-                        <div className='pi-ln'>{user.Lname}</div>
-                        <div className='pi-dob'>{user.DOB}</div>
-                        <div className='pi-email'>{user.email}</div>
-                        <div className='pi-phone'>{user.phone}</div>
-                    </div>
-                    <div className='address'>
 
+
+                        <div className='name-dob'>
+                            <div className='pi-fn'><h>First Name</h><p>{user.Fname}</p></div>
+                            <div className='pi-fn'><h>Last Name</h><p>{user.Lname}</p></div>
+                            <div className='pi-fn'><h>DOB</h><p>{new Date(user.DOB).toLocaleDateString()}</p></div>
+                        </div>
+                        <div className='email-phone'>
+                            <div className='pi-email'><h>Email</h><p>{user.email}</p></div>
+                            <div className='pi-fn'><h>Phone</h><p>{user.phone}</p></div>
+                        </div>
+
+
+                    </div>
+
+                    <div className='address'>
                         <div className='add-text'>Address</div>
-                        <div className='add-line'></div>
-                        <div className='add-country'>Pakistan</div>
-                        <div className='add-city'>{user.city}</div>
+                        {/* <div className='add-line'></div> */}
+                        <div className='add-info'>
+                            <div className='pi-fn'><h>Country</h><p>Pakistan</p></div>
+                            <div className='pi-fn'><h>City</h><p>{user.city}</p></div>
+                        </div>
                     </div>
                 </div>
             </div>

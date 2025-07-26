@@ -90,16 +90,26 @@
     margin-top: 10px;
     margin-bottom: 15px;
     height: 35px;
+    width: 300px;
     border: none;
     background-color: rgb(254, 190, 70);
     cursor: pointer;
 }
 
+.add-to-cart-btn:hover {
+    background-color: rgb(250, 212, 142);
+}
+
 .buy-now-btn {
     height: 35px;
+    width: 300px;
     border: none;
     background-color: rgb(122, 193, 122);
     cursor: pointer;
+}
+
+.buy-now-btn:hover {
+    background-color: rgb(77, 143, 77);
 }
 
 /* delivery */

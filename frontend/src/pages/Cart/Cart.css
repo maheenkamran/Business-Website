@@ -1,7 +1,7 @@
 .cart-container {
     /* whole bg */
     display: flex;
-    background-color: rgb(207, 206, 206);
+    background-color: rgb(219, 219, 219);
 }
 
 
@@ -65,13 +65,119 @@
 .c-quantity {
     font-weight: normal;
     font-size: 16px;
+    display: flex;
+    margin-top: 10px;
+    margin-left: 10px;
 }
+
+.btn-cart {
+    border-radius: 50px;
+    border: none;
+    width: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-cart:hover {
+    background-color: rgb(200, 200, 200);
+    cursor: pointer;
+}
+
+.item-qty {
+    margin: 0px 5px 0px 5px;
+}
+
+.delete-btn {
+    margin: 30px 5px 0px 50px;
+    font-size: 20px;
+}
+
+.delete-btn:hover {
+    background-color: rgb(206, 206, 206);
+    border-radius: 50px;
+    cursor: pointer;
+}
+
 
 .bill-box {
     margin: 50px;
     margin-left: auto;
+    padding: 20px;
     width: 300px;
+    height: 250px;
     display: flex;
     flex-direction: column;
     background-color: white;
+}
+
+.bill-box h {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.total {
+    display: flex;
+    font-size: 18px;
+    margin: 30px 0px 10px 0px;
+}
+
+.total p {
+    color: grey;
+}
+
+.total div {
+    margin-left: auto;
+}
+
+.delivery {
+    display: flex;
+    font-size: 18px;
+}
+
+.delivery p {
+    color: grey;
+}
+
+.delivery div {
+    margin-left: auto;
+}
+
+.d-line {
+    height: 1px;
+    width: 300px;
+    margin: 20px 0px 20px 0px;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(179, 178, 178);
+}
+
+.total-bill-box {
+    display: flex;
+    font-size: 18px;
+}
+
+.total-bill-box p {
+    color: black;
+}
+
+.total-bill-box div {
+    margin-left: auto;
+}
+
+.checkout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 280px;
+    background-color: black;
+    color: white;
+    margin: 20px 0px 0px 10px;
+    border-radius: 5px;
+}
+
+.checkout:hover {
+    background-color: rgb(58, 58, 58);
+    cursor: pointer;
 }

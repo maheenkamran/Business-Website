@@ -71,7 +71,6 @@ router.get('/cart', async (req, res) => {
     res.status(400).send({ error: err.message });
   }
 })
-//Add in Cart
 router.put('/cart', async (req, res) => {
   try {
     const { userid } = req.query;
@@ -105,6 +104,103 @@ router.put('/cart', async (req, res) => {
         user.cart.push({ productid, quantity });
       }
       await user.save();
+      res.status(200).json(user);
+    }
+  }
+  catch (err) {
+    res.status(400).send({ error: err.message });
+  }
+})
+
+router.delete('/delete-from-cart', async (req, res) => {
+  try {
+    const { userid } = req.query;
+    const { productid, quantity } = req.body;
+
+    const user = await User.findOne({ _id: userid });
+    const product = await Product.findOne({ _id: productid });
+
+    if (!user)
+      return res.status(400).send('no user found');
+    else {
+      if (!user.cart) {
+        user.cart = [];
+      }
+      const itemIndex = user.cart.findIndex(i =>
+        i.productid.toString() === productid);
+
+      user.cart.splice(itemIndex, 1); //means “remove 1 item starting from that index”
+      product.stock += quantity;
+
+      await user.save();
+      await product.save();
+      res.status(200).json(user);
+    }
+  }
+  catch (err) {
+    res.status(400).send({ error: err.message });
+  }
+})
+
+router.put('/add-cart', async (req, res) => {
+  try {
+    const { userid } = req.query;
+    const { productid } = req.body;
+
+    const user = await User.findOne({ _id: userid });
+    const product = await Product.findOne({ _id: productid });
+
+    if (!user)
+      return res.status(400).send('no user found');
+    else {
+      if (!user.cart) {
+        user.cart = [];
+      }
+      const itemIndex = user.cart.findIndex(i =>
+        i.productid.toString() === productid);
+
+      if ((user.cart[itemIndex].quantity + 1) <= product.stock) {
+
+        user.cart[itemIndex].quantity += 1;
+        product.stock -= 1;
+      }
+      else {
+        return res.status(400).send('Out of stock');
+      }
+
+      await user.save();
+      await product.save();
+
+      res.status(200).json(user);
+    }
+  }
+  catch (err) {
+    res.status(400).send({ error: err.message });
+  }
+})
+
+router.put('/remove-cart', async (req, res) => {
+  try {
+    const { userid } = req.query;
+    const { productid } = req.body;
+
+    const user = await User.findOne({ _id: userid });
+    const product = await Product.findOne({ _id: productid });
+
+    if (!user)
+      return res.status(400).send('no user found');
+    else {
+      if (!user.cart) {
+        user.cart = [];
+      }
+      const itemIndex = user.cart.findIndex(i =>
+        i.productid.toString() === productid);
+
+      user.cart[itemIndex].quantity -= 1;
+      product.stock += 1;
+
+      await user.save();
+      await product.save();
       res.status(200).json(user);
     }
   }
