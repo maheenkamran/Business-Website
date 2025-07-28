@@ -6,6 +6,7 @@ import Profile from './pages/Profile/Profile.js'
 import Messages from './pages/Messages/Messages.js'
 import Orders from './pages/Orders/Orders.js'
 import Cart from './pages/Cart/Cart.js'
+import Checkout from './pages/Checkout/Checkout.js';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/messages" element={<Messages />}></Route>
         <Route path="/orders" element={<Orders />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
+        <Route path="/checkout" element={<Checkout />}></Route>
       </Routes>
     </BrowserRouter>
   );

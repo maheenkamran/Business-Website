@@ -2,7 +2,7 @@ import './Cart.css';
 import Header from "../../components/Header/Header.js";
 import Footer from "../../components/Footer/Footer.js";
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 
 function Cart() {
 
@@ -136,6 +136,11 @@ function Cart() {
         }
     }, [cart, productList]);
 
+    const navigate = useNavigate();
+
+    const navigateCheckout = () => {
+        navigate(`/checkout?id=${id}`);
+    }
 
     return (
         <>
@@ -199,7 +204,7 @@ function Cart() {
                                 <p>Total</p>
                                 <div>Rs.{total + discount}</div>
                             </div>
-                            <div className='checkout'><p>Checkout</p></div>
+                            <div className='checkout' onClick={() => { navigateCheckout() }}><p>Checkout</p></div>
                         </div>
                     </div>
 
