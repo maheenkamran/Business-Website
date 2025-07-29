@@ -5,6 +5,8 @@ const Order = require('../models/Order');
 router.post('/', async (req, res) => {
     try {
         const newOrder = new Order(req.body);
+        console.log(newOrder);
+
         await newOrder.save();
 
         res.status(200).send(newOrder);
@@ -13,6 +15,7 @@ router.post('/', async (req, res) => {
         res.status(400).send({ err: err.message });
     }
 })
+
 router.get('/:userid', async (req, res) => {
     try {
         const { userid } = req.params;

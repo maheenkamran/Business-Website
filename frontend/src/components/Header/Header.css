@@ -24,7 +24,7 @@
 }
 
 #search-bar {
-    margin-left: 125px;
+    margin-left: 130px;
     padding: 5px 5px 5px 10px;
     width: 350px;
     height: 20px;
@@ -71,21 +71,6 @@
 }
 
 #message-icon {
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-.orders {
-    display: flex;
-    flex-direction: column;
-    margin-left: 10px;
-    padding: 5px;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-#orders-icon {
     margin-top: 5px;
     margin-bottom: 5px;
 }

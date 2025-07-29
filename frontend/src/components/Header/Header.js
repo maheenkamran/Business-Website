@@ -27,10 +27,6 @@ function Header() {
                     <i id="message-icon" className="fa-solid fa-message"></i>
                     <p id="message-text ">Messages</p>
                 </div>
-                <div className="orders" onClick={() => { navigate(`/orders`) }}>
-                    <i id="orders-icon" className="fa-solid fa-heart"></i>
-                    <p id="orders-text ">Orders</p>
-                </div>
                 <div className="cart" onClick={() => { navigate(`/cart?id=${user._id}`) }}>
                     <i id="cart-icon" className="fa-solid fa-cart-shopping"></i>
                     <p id="cart-text ">My Cart</p>

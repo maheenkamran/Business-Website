@@ -2,6 +2,8 @@ import './Profile.css'
 import { useEffect, useState } from 'react';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
+import Orders from '../Orders/Orders';
+
 function Profile() {
     const options = { weekday: 'long', day: 'numeric', month: 'long' };
     const date = new Date().toLocaleDateString('en-US', options); //only date, not time
@@ -10,6 +12,7 @@ function Profile() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [user, setUser] = useState();
+    const [selected, setSelected] = useState("dashboard");
 
     const verifylogin = async () => {
         try {
@@ -48,64 +51,92 @@ function Profile() {
     return (
         <>
             <Header />
-            {isSignedIn ? (<div className='profile-container'>
-                <div className='profile-panel-section'>
-                    <div className='brandname'>brandname</div>
-                    <div className='pp-line'></div>
-                    <div className='pp-section' ><i class="fa-solid fa-house-user"></i><p>Dashboard</p></div>
-                    <div className='pp-section' ><i class="fa-solid fa-bag-shopping"></i><p>My Orders</p></div>
-                    <div className='pp-section' ><i class="fa-solid fa-message"></i><p>Reviews</p></div>
-                    <div className='pp-section' ><i class="fa-solid fa-clipboard-question"></i><p>About</p></div>
-                    <div className='pp-section' ><i class="fa-solid fa-address-book"></i><p>Contact</p></div>
+            {isSignedIn ? (
+                <div className='profile-container'>
+                    <div className='profile-panel-section'>
+                        <div className='brandname'>brandname</div>
+                        <div className='pp-line'></div>
+                        <div className='pp-section' onClick={() => { setSelected("dashboard") }}><i className="fa-solid fa-house-user"></i><p>Dashboard</p></div>
+                        <div className='pp-section' onClick={() => { setSelected("orders") }} ><i className="fa-solid fa-bag-shopping"></i><p>My Orders</p></div>
+                        <div className='pp-section' onClick={() => { setSelected("reviews") }} ><i className="fa-solid fa-message"></i><p>Reviews</p></div>
+                        <div className='pp-section' onClick={() => { setSelected("about") }} ><i className="fa-solid fa-clipboard-question"></i><p>About</p></div>
+                        <div className='pp-section' onClick={() => { setSelected("contact") }} ><i className="fa-solid fa-address-book"></i><p>Contact</p></div>
+                        <div className='pp-logout' onClick={() => { logout() }} ><p>Logout</p><i className="fa-solid fa-right-from-bracket" ></i></div>
 
-                </div>
-                <div className='profile-main-section'>
-                    <div className='profile-search-bar'>
-                        <div className='todays-date'>{date}</div>
                     </div>
-                    <div className='myprofile-text'>
-                        My Profile
-                        <div className='line'></div>
-                    </div>
-                    <div className='profilepic-name'>
-                        <img className='profile-pic' src={user.profilepic} alt="profile-pic"></img>
-                        <div className='name-location'>
-                            <div className='name-logout'>
-                                <div className='name'>{user.Fname} {user.Lname}</div>
-                                <i id="logout-icon" className="fa-solid fa-right-from-bracket" onClick={() => { logout() }}></i>
+                    {selected === "dashboard" && (
+                        <div className='profile-main-section'>
+                            <div className='profile-search-bar'>
+                                <div className='todays-date'>{date}</div>
                             </div>
-                            <div className='user-text'>User</div>
-                            <div className='location'>{user.city}, Pakistan</div>
+                            <div className='myprofile-text'>
+                                My Profile
+                                <div className='line'></div>
+                            </div>
+                            <div className='profilepic-name'>
+                                <img className='profile-pic' src={user.profilepic} alt="profile-pic"></img>
+                                <div className='name-location'>
+                                    <div className='name-logout'>
+                                        <div className='name'>{user.Fname} {user.Lname}</div>
+                                        <i id="logout-icon" className="fa-solid fa-right-from-bracket" onClick={() => { logout() }}></i>
+                                    </div>
+                                    <div className='user-text'>User</div>
+                                    <div className='location'>{user.city}, Pakistan</div>
+                                </div>
+                            </div>
+                            <div className='personal-info'>
+                                <div className='pi-text'>Personal Information</div>
+                                <div className='pi-line'></div>
+
+
+                                <div className='name-dob'>
+                                    <div className='pi-fn'><h>First Name</h><p>{user.Fname}</p></div>
+                                    <div className='pi-fn'><h>Last Name</h><p>{user.Lname}</p></div>
+                                    <div className='pi-fn'><h>DOB</h><p>{new Date(user.DOB).toLocaleDateString()}</p></div>
+                                </div>
+                                <div className='email-phone'>
+                                    <div className='pi-email'><h>Email</h><p>{user.email}</p></div>
+                                    <div className='pi-fn'><h>Phone</h><p>{user.phone}</p></div>
+                                </div>
+
+
+                            </div>
+
+                            <div className='address'>
+                                <div className='add-text'>Address</div>
+                                {/* <div className='add-line'></div> */}
+                                <div className='add-info'>
+                                    <div className='pi-fn'><h>Country</h><p>Pakistan</p></div>
+                                    <div className='pi-fn'><h>City</h><p>{user.city}</p></div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div className='personal-info'>
-                        <div className='pi-text'>Personal Information</div>
-                        <div className='pi-line'></div>
+                    )
+                    }
+                    {
+                        selected === "orders" && (
+                            <div>
+                                <Orders />
+                            </div>
 
-
-                        <div className='name-dob'>
-                            <div className='pi-fn'><h>First Name</h><p>{user.Fname}</p></div>
-                            <div className='pi-fn'><h>Last Name</h><p>{user.Lname}</p></div>
-                            <div className='pi-fn'><h>DOB</h><p>{new Date(user.DOB).toLocaleDateString()}</p></div>
-                        </div>
-                        <div className='email-phone'>
-                            <div className='pi-email'><h>Email</h><p>{user.email}</p></div>
-                            <div className='pi-fn'><h>Phone</h><p>{user.phone}</p></div>
-                        </div>
-
-
-                    </div>
-
-                    <div className='address'>
-                        <div className='add-text'>Address</div>
-                        {/* <div className='add-line'></div> */}
-                        <div className='add-info'>
-                            <div className='pi-fn'><h>Country</h><p>Pakistan</p></div>
-                            <div className='pi-fn'><h>City</h><p>{user.city}</p></div>
-                        </div>
-                    </div>
+                        )
+                    }
+                    {
+                        selected === "reviews" && (
+                            <div>hi reviews</div>
+                        )
+                    }
+                    {
+                        selected === "about" && (
+                            <div>hi about</div>
+                        )
+                    }
+                    {
+                        selected === "contact" && (
+                            <div>hi contact</div>
+                        )
+                    }
                 </div>
-            </div>
             ) : (
                 <div className='pop-up-container'>
                     <div className='pop-up'>

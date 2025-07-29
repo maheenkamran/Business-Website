@@ -81,6 +81,47 @@ function Checkout() {
 
     const navigate = useNavigate();
 
+    const completeOrder = async () => {
+        try {
+            const res = await fetch(`http://localhost:3000/api/orders`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    userid: id,
+                    products: productList.map(p => ({
+                        //renaming according to Order model, what backend expects
+                        productid: p._id,
+                        quantity: p.quantity
+                    }))
+                })
+            });
+            if (res.ok) {
+                try {
+                    const res2 = await fetch(`http://localhost:3000/api/users/empty-cart?userid=${id}`,
+                        {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        });
+
+                    if (res2.ok) {
+                        navigate("/");
+                    }
+                } catch (err) {
+                    console.log({ err: err.message });
+                }
+            } else {
+                const error = await res.json();
+                console.log(error);
+            }
+        } catch (err) {
+            console.log({ err: err.message });
+        }
+
+    }
     return (<>
         <Header />
         <div className="checkout-page">
@@ -179,9 +220,12 @@ function Checkout() {
                 {isComplete ? (
                     <div className='overlay'>
                         <div className='order-done'>
-                            Thankyou for shopping with us
+                            <p> Thankyou for shopping with us!</p>
+                            <div className='smile-icon'> <i className="fa-regular fa-face-smile-beam"></i></div>
+                            <button onClick={() => {
+                                completeOrder();
+                            }}>Shop More</button>
                         </div>
-                        <button onClick={() => { navigate("/") }}>Shop More</button>
                     </div>
                 ) : (<p></p>)}
             </div>

@@ -208,6 +208,27 @@ router.put('/remove-cart', async (req, res) => {
     res.status(400).send({ error: err.message });
   }
 })
+
+router.delete('/empty-cart', async (req, res) => {
+  try {
+    const { userid } = req.query;
+    const user = await User.findOne({ _id: userid });
+    //find returns an array, findOne returns a single object
+
+    if (!user)
+      return res.status(400).send('no user found');
+
+    else {
+      user.cart = [];
+      await user.save();
+      res.status(200).json(user);
+    }
+  }
+  catch (err) {
+    res.status(400).send({ error: err.message });
+  }
+})
+
 router.get('/:userid', async (req, res) => {
   try {
     const { userid } = req.params;
