@@ -34,7 +34,7 @@ function Checkout() {
                 const data = await fetch(`http://localhost:3000/api/users/cart?id=${id}`);
                 const result = await data.json();
 
-                setCart(result.cart ?? []); //only store cart array
+                setCart(result.cart ?? []); //only store cart array ->products array in cart
             }
             catch (err) {
                 console.log({ err: err.message });
@@ -90,10 +90,10 @@ function Checkout() {
                 },
                 body: JSON.stringify({
                     userid: id,
-                    products: productList.map(p => ({
+                    products: cart.map(c => ({
                         //renaming according to Order model, what backend expects
-                        productid: p._id,
-                        quantity: p.quantity
+                        productid: c.productid,
+                        quantity: c.quantity
                     }))
                 })
             });
