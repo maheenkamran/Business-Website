@@ -31,6 +31,10 @@ function Header() {
                     <i id="cart-icon" className="fa-solid fa-cart-shopping"></i>
                     <p id="cart-text ">My Cart</p>
                 </div>
+                <div className="cart" onClick={() => { navigate(`/admin`) }}>
+                    <i id="cart-icon" className="fa-solid fa-user-tie"></i>
+                    <p id="cart-text ">Admin</p>
+                </div>
             </div>
 
             <div className='bottom-header'>

@@ -5,6 +5,7 @@ const userRoutes = require('./Routes/userRoutes');
 const productRoutes = require('./Routes/productRoutes.js');
 const orderRoutes = require('./Routes/orderRoutes.js');
 const reviewRoutes = require('./Routes/reviewRoutes.js');
+const adminRoutes = require('./Routes/adminRoutes.js');
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/reviews', reviewRoutes);
+app.use('/api/admin', adminRoutes);
 
 app.get('/', (req, res) => {
     res.send("Hello from backend!");

@@ -260,6 +260,7 @@
     margin: 0px 105px 15px 0px;
     display: flex;
     flex-direction: column;
+    width: 177px;
 }
 
 .pi-email h {

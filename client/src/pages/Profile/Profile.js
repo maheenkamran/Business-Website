@@ -51,7 +51,7 @@ function Profile() {
     return (
         <>
             <Header />
-            {isSignedIn ? (
+            {isSignedIn && user.role === 'user' ? (
                 <div className='profile-container'>
                     <div className='profile-panel-section'>
                         <div className='brandname'>brandname</div>
@@ -146,7 +146,7 @@ function Profile() {
                         <input className='input-email' placeholder='Enter Email/Phone No'
                             onChange={(e) => { setEmail(e.target.value) }}></input>
 
-                        <input className='input-password' placeholder='Password'
+                        <input className='input-password' placeholder='Password' type="password"
                             onChange={(e) => { setPassword(e.target.value) }}></input>
 
                         <button className='login-btn' onClick={() => { verifylogin() }}>Login</button>
