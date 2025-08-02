@@ -4,7 +4,16 @@ const router = express.Router();
 const User = require('../models/User');
 const Product = require('../models/Product');
 
-// POST /api/users
+router.get('/', async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json(users);
+  }
+  catch (err) {
+    res.status(400).send({ error: err.message });
+  }
+})
+
 router.post('/', async (req, res) => {
   try {
     const newUser = new User(req.body);
@@ -17,23 +26,13 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.get('/', async (req, res) => {
-  try {
-    const users = await User.find();
-    res.status(200).json(users);
-  }
-  catch (err) {
-    res.status(400).send({ error: err.message });
-  }
-})
-
 router.get('/verifyP', async (req, res) => {
   try {
     const { phone, password } = req.query;
 
     const user = await User.findOne({ phone: phone, password: password });
     if (!user || user.length === 0) {
-      res.status(400).send({ error: err.message });
+      res.status(400).send({ error: 'User not found' });
     }
     res.status(200).json(user);
   }
@@ -48,7 +47,7 @@ router.get('/verifyE', async (req, res) => {
 
     const user = await User.findOne({ email: email, password: password });
     if (!user || user.length === 0) {
-      res.status(400).send({ error: err.message });
+      res.status(400).send({ error: 'User not found' });
     }
     res.status(200).json(user);
   }

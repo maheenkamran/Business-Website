@@ -16,16 +16,16 @@ Router.post('/', async (req, res) => {
     }
 })
 
-// Router.get('/', async (req, res) => {
-//     try {
-//         const products=await Product.find();
-//         res.status(200).json(products);
-//     }
-//     catch (err) {
-//         console.log("error");
-//         res.status(400).send({ error: err.message });
-//     }
-// })
+Router.get('/all', async (req, res) => {
+    try {
+        const products = await Product.find();
+        res.status(200).json(products);
+    }
+    catch (err) {
+        console.log("error");
+        res.status(400).send({ error: err.message });
+    }
+})
 
 Router.get('/', async (req, res) => {
     try {

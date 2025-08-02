@@ -18,7 +18,7 @@
     align-items: center;
 }
 
-.pop-up h {
+.pop-up h2 {
     font-size: 26px;
     font-weight: bold;
     margin-bottom: 10px;
@@ -246,9 +246,11 @@
     flex-direction: column;
 }
 
-.pi-fn h {
+.pi-fn h2 {
     color: rgb(105, 105, 105);
     margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 600px;
 }
 
 .email-phone {
@@ -260,12 +262,14 @@
     margin: 0px 105px 15px 0px;
     display: flex;
     flex-direction: column;
-    width: 177px;
+    width: 170px;
 }
 
-.pi-email h {
+.pi-email h2 {
     color: rgb(105, 105, 105);
     margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 600px;
 }
 
 .address {

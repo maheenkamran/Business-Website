@@ -218,3 +218,93 @@
     background-color: rgb(237, 117, 117);
     cursor: pointer;
 }
+
+
+/* manage products */
+.mp-section {
+    background-color: white;
+    width: 850px;
+    margin: 20px 20px 30px 0px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.mp-card {
+    margin: 10px 10px 0px 0px;
+    padding: 12px 12px 12px 20px;
+    border-radius: 10px;
+    background-color: rgb(212, 210, 210);
+}
+
+.mp-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mp-details p {
+    width: 150px;
+}
+
+.mp-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.mp-action-btn {
+    height: 20px;
+    margin-right: 20px;
+    padding: 5px 8px 5px 8px;
+    background-color: rgb(240, 239, 239);
+    border-radius: 5px;
+}
+
+.mp-action-btn:hover {
+    background-color: rgb(227, 177, 121);
+    cursor: pointer;
+}
+
+.mp-action-btn.delete:hover {
+    background-color: rgb(237, 117, 117);
+    cursor: pointer;
+}
+
+.mp-action-btn.add {
+    margin-left: auto;
+}
+
+.mp-action-btn.add:hover {
+    background-color: rgb(112, 204, 112);
+    cursor: pointer;
+}
+
+/* manage orders */
+.order-section {
+    background-color: white;
+    width: 850px;
+    margin: 20px 20px 30px 0px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.order-card {
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgb(239, 239, 239);
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.order-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.order-details p {
+    margin: 5px 0;
+    width: 200px;
+}

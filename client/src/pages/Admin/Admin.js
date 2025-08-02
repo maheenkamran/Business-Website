@@ -13,6 +13,7 @@ function Admin() {
     const [admin, setAdmin] = useState(null);
     const [selected, setSelected] = useState("dashboard");
     const [users, setUsers] = useState([]);
+    const [products, setProducts] = useState([]);
 
     const verifylogin = async () => {
         try {
@@ -75,6 +76,16 @@ function Admin() {
         }
     }
 
+    const fetchProducts = async () => {
+        try {
+            const res = await fetch(`http://localhost:3000/api/products/all`);
+            const data = await res.json();
+            setProducts(data);
+        } catch (error) {
+            console.error("Failed to fetch products:", error);
+        }
+    };
+
     return (
         <>
             <Header />
@@ -85,7 +96,8 @@ function Admin() {
                         <div className='admin-pp-line'></div>
                         <div className='admin-pp-section' onClick={() => setSelected("dashboard")}><i className="fa-solid fa-chart-line"></i><p>Dashboard</p></div>
                         <div className='admin-pp-section' onClick={() => { setSelected("manageUsers"); fetchUsers() }}><i className="fa-solid fa-users"></i><p>Manage Users</p></div>
-                        <div className='admin-pp-section' onClick={() => setSelected("manageProducts")}><i className="fa-solid fa-box"></i><p>Manage Products</p></div>
+                        <div className='admin-pp-section' onClick={() => { setSelected("manageProducts"); fetchProducts(); }}><i className="fa-solid fa-box"></i><p>Manage Products</p></div>
+
                         <div className='admin-pp-section' onClick={() => setSelected("orders")}><i className="fa-solid fa-clipboard-list"></i><p>Orders</p></div>
                         <div className='admin-pp-section' onClick={() => setSelected("settings")}><i className="fa-solid fa-gear"></i><p>Settings</p></div>
                         <div className='admin-pp-logout' onClick={logout}><p>Logout</p><i className="fa-solid fa-right-from-bracket"></i></div>
@@ -176,7 +188,35 @@ function Admin() {
 
                             </div>
                         </div>}
-                        {selected === "manageProducts" && <div>📦 Manage Products Section</div>}
+                        {selected === "manageProducts" && <div>
+                            <div className='mp-section'>
+                                <div className='h-add'>
+                                    <h3>Manage Products</h3>
+                                    <div className='mp-action-btn add'>
+                                        <i className="fa-solid fa-plus"></i>
+                                    </div>
+                                </div>
+
+                                {products.map((p, i) => (
+                                    <div className='mp-card' key={p._id}>
+                                        <div className='mp-details'>
+                                            <img className='mp-img' src={p.image} alt="product" />
+                                            <p>{p.name}</p>
+                                            <p>{p.category}</p>
+                                            <p>Rs. {p.price}</p>
+                                            <p>{p.stock} left</p>
+                                            <div className='mp-action-btn'>
+                                                <i className="fa-solid fa-pen-to-square"></i>
+                                            </div>
+                                            <div className='mp-action-btn delete'>
+                                                <i className="fa-solid fa-trash"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>}
+
                         {selected === "orders" && <div>📑 View Orders Section</div>}
                         {selected === "settings" && <div>⚙️ Settings Section</div>}
                     </div>

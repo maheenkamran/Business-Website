@@ -15,6 +15,14 @@ router.post('/', async (req, res) => {
         res.status(400).send({ err: err.message });
     }
 })
+router.get('/', async (req, res) => {
+    try {
+        const orders = await Order.find(); // fetch all orders
+        res.status(200).send(orders);
+    } catch (err) {
+        res.status(400).send({ err: err.message });
+    }
+});
 
 router.get('/:userid', async (req, res) => {
     try {

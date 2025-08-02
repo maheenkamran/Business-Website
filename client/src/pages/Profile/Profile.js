@@ -90,13 +90,13 @@ function Profile() {
 
 
                                 <div className='name-dob'>
-                                    <div className='pi-fn'><h>First Name</h><p>{user.Fname}</p></div>
-                                    <div className='pi-fn'><h>Last Name</h><p>{user.Lname}</p></div>
-                                    <div className='pi-fn'><h>DOB</h><p>{new Date(user.DOB).toLocaleDateString()}</p></div>
+                                    <div className='pi-fn'><h2>First Name</h2><p>{user.Fname}</p></div>
+                                    <div className='pi-fn'><h2>Last Name</h2><p>{user.Lname}</p></div>
+                                    <div className='pi-fn'><h2>DOB</h2><p>{new Date(user.DOB).toLocaleDateString()}</p></div>
                                 </div>
                                 <div className='email-phone'>
-                                    <div className='pi-email'><h>Email</h><p>{user.email}</p></div>
-                                    <div className='pi-fn'><h>Phone</h><p>{user.phone}</p></div>
+                                    <div className='pi-email'><h2>Email</h2><p>{user.email}</p></div>
+                                    <div className='pi-fn'><h2>Phone</h2><p>{user.phone}</p></div>
                                 </div>
 
 
@@ -106,8 +106,8 @@ function Profile() {
                                 <div className='add-text'>Address</div>
                                 {/* <div className='add-line'></div> */}
                                 <div className='add-info'>
-                                    <div className='pi-fn'><h>Country</h><p>Pakistan</p></div>
-                                    <div className='pi-fn'><h>City</h><p>{user.city}</p></div>
+                                    <div className='pi-fn'><h2>Country</h2><p>Pakistan</p></div>
+                                    <div className='pi-fn'><h2>City</h2><p>{user.city}</p></div>
                                 </div>
                             </div>
                         </div>
@@ -140,7 +140,7 @@ function Profile() {
             ) : (
                 <div className='pop-up-container'>
                     <div className='pop-up'>
-                        <h>Login</h>
+                        <h2>Login</h2>
                         <p>Enter your details to login</p>
 
                         <input className='input-email' placeholder='Enter Email/Phone No'
