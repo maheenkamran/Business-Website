@@ -3,6 +3,7 @@
   /* full viewport width */
   height: 30vw;
   /* adjusts height based on image ratio */
+
   overflow: hidden;
   display: flex;
   align-items: center;

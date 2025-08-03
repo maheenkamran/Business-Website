@@ -16,8 +16,6 @@ function Profile() {
 
     const verifylogin = async () => {
         try {
-            console.log(`${process.env.REACT_APP_BACKEND_URL}/api/users/verifyE?email=${email}&password=${password}`);
-
             const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/verifyE?email=${email}&password=${password}`);
             const result = await res.json();
 

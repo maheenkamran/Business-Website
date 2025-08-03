@@ -17,7 +17,7 @@ function Admin() {
 
     const verifylogin = async () => {
         try {
-            const res = await fetch(`http://localhost:3000/api/users/verifyE?email=${email}&password=${password}`);
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/verifyE?email=${email}&password=${password}`);
             const result = await res.json();
 
             if (res.status === 200) {
@@ -59,7 +59,7 @@ function Admin() {
 
     const fetchUsers = async () => {
         try {
-            const res = await fetch(`http://localhost:3000/api/admin/users`);
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/admin/users`);
 
             if (res.ok) {
                 const result = await res.json();
@@ -78,7 +78,7 @@ function Admin() {
 
     const fetchProducts = async () => {
         try {
-            const res = await fetch(`http://localhost:3000/api/products/all`);
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products/all`);
             const data = await res.json();
             setProducts(data);
         } catch (error) {
