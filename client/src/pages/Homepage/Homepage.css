@@ -1,20 +1,19 @@
 .slide {
   width: 100vw;
   /* full viewport width */
-  height: 30vw;
+  height: 33vw;
   /* adjusts height based on image ratio */
 
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 30px;
 }
 
 #title {
   text-align: center;
   justify-content: center;
-  margin: 20px 10px 50px 10px;
+  margin: 10px 10px 50px 10px;
   font-weight: bolder;
   font-size: 36px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow';
@@ -24,6 +23,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-bottom: 50px;
 }
 
 .c-name {
@@ -52,6 +52,10 @@
 }
 
 .c-name:hover {
-  background-color: orange;
+  background-color: black;
   color: white;
+}
+
+.homepage-container {
+  background-color: rgb(217, 216, 216);
 }

@@ -2,6 +2,10 @@
     font-family: 'Inter', sans-serif;
 }
 
+.product-bg {
+    background-color: rgb(234, 233, 233);
+}
+
 .page-setup {
     display: flex;
     align-items: flex-start;
@@ -21,6 +25,7 @@
     border: 1px solid rgb(220, 217, 217);
     box-shadow: 0px 4px 8px rgba(112, 111, 111, 0.2);
     cursor: pointer;
+    background-color: white;
 }
 
 .product-image img {

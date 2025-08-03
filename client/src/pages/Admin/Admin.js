@@ -133,13 +133,13 @@ function Admin() {
 
 
                                     <div className='name-dob'>
-                                        <div className='pi-fn'><h>First Name</h><p>{admin.Fname}</p></div>
-                                        <div className='pi-fn'><h>Last Name</h><p>{admin.Lname}</p></div>
-                                        <div className='pi-fn'><h>DOB</h><p>{new Date(admin.DOB).toLocaleDateString()}</p></div>
+                                        <div className='pi-fn'><h2>First Name</h2><p>{admin.Fname}</p></div>
+                                        <div className='pi-fn'><h2>Last Name</h2><p>{admin.Lname}</p></div>
+                                        <div className='pi-fn'><h2>DOB</h2><p>{new Date(admin.DOB).toLocaleDateString()}</p></div>
                                     </div>
                                     <div className='email-phone'>
-                                        <div className='pi-email'><h>Email</h><p>{admin.email}</p></div>
-                                        <div className='pi-fn'><h>Phone</h><p>{admin.phone}</p></div>
+                                        <div className='pi-email'><h2>Email</h2><p>{admin.email}</p></div>
+                                        <div className='pi-fn'><h2>Phone</h2><p>{admin.phone}</p></div>
                                     </div>
 
 
@@ -149,8 +149,8 @@ function Admin() {
                                     <div className='add-text'>Address</div>
                                     {/* <div className='add-line'></div> */}
                                     <div className='add-info'>
-                                        <div className='pi-fn'><h>Country</h><p>Pakistan</p></div>
-                                        <div className='pi-fn'><h>City</h><p>{admin.city}</p></div>
+                                        <div className='pi-fn'><h2>Country</h2><p>Pakistan</p></div>
+                                        <div className='pi-fn'><h2>City</h2><p>{admin.city}</p></div>
                                     </div>
                                 </div>
                             </div>
@@ -224,7 +224,7 @@ function Admin() {
             ) : (
                 <div className='admin-pop-up-container'>
                     <div className='admin-pop-up'>
-                        <h>Admin Login</h>
+                        <h2>Admin Login</h2>
                         <p>Enter your admin credentials to login</p>
 
                         <input className='admin-input-email' placeholder='Enter Admin Email'

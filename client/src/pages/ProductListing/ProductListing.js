@@ -49,30 +49,32 @@ function ProductListing() {
   return (
     <>
       <Header />
-      <div className="page-setup">
-        <div className="filterpanel-container"><FilterPanel />
-        </div>
+      <div className="product-bg">
+        <div className="page-setup">
+          <div className="filterpanel-container"><FilterPanel />
+          </div>
 
-        {
-          Products.length === 0 ?
-            (
-              <h3>NO products available</h3>
-            ) :
-            (
-              <div className="products-container">
-                {Products.map((p) => (
-                  <div className="product-item" onClick={() => { handleproductclick(p._id) }}>
-                    <div className="product-image">
-                      <img src={p.image} alt="product"></img>
+          {
+            Products.length === 0 ?
+              (
+                <h3>NO products available</h3>
+              ) :
+              (
+                <div className="products-container">
+                  {Products.map((p) => (
+                    <div className="product-item" onClick={() => { handleproductclick(p._id) }}>
+                      <div className="product-image">
+                        <img src={p.image} alt="product"></img>
+                      </div>
+                      <div className="product-price">Rs.{p.price}</div>
+                      <div className="product-name">{p.name}</div>
                     </div>
-                    <div className="product-price">Rs.{p.price}</div>
-                    <div className="product-name">{p.name}</div>
-                  </div>
-                ))
-                }
-              </div>
-            )
-        }
+                  ))
+                  }
+                </div>
+              )
+          }
+        </div>
       </div>
       <Footer />
     </>

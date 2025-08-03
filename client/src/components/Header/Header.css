@@ -7,7 +7,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(247, 224, 200);
+    background-color: #222222;
+    color: rgb(207, 206, 206);
 }
 
 #logo {
@@ -23,26 +24,32 @@
     cursor: pointer;
 }
 
+#brand-name img {
+    margin-top: 8px;
+    width: 150px;
+    height: 40px;
+}
+
 #search-bar {
-    margin-left: 130px;
+    margin-left: 80px;
     padding: 5px 5px 5px 10px;
     width: 350px;
     height: 20px;
-    border: 1px solid rgb(243, 153, 9);
+    border: 1px solid grey;
 }
 
 #search-button {
     height: 31px;
     width: 100px;
     padding: 5px 5px 5px 5px;
-    background-color: rgb(243, 153, 9);
-    border: 1px solid rgb(243, 153, 9);
+    background-color: rgb(61, 94, 53);
+    border: 1px solid rgb(61, 94, 53);
     color: white;
     cursor: pointer;
 }
 
 #search-button:hover {
-    background-color: rgb(249, 190, 94);
+    background-color: rgb(91, 133, 93);
 }
 
 .profile {
@@ -92,8 +99,9 @@
 
 .bottom-header {
     height: 36px;
-    border: 1px solid rgb(196, 194, 194);
-    background-color: antiquewhite;
+    color: white;
+    border: 1px solid rgb(79, 79, 79);
+    background-color: rgb(79, 79, 79);
     z-index: 10;
     position: relative;
     display: flex;
@@ -109,7 +117,7 @@
     position: absolute;
     top: 100%;
     /* puts it below the trigger */
-    background-color: antiquewhite;
+    background-color: rgb(79, 79, 79);
     width: 200px;
     height: 240px;
     padding: 10px;
@@ -130,7 +138,7 @@
 }
 
 .c-type:hover {
-    background-color: rgb(255, 245, 232);
+    background-color: rgb(168, 168, 168);
 
 }
 

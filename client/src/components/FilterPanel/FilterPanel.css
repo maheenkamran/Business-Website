@@ -2,7 +2,7 @@
     width: 250px;
     height: 750px;
     margin: 40px 0px 0px 80px;
-    background-color: rgb(255, 245, 233);
+    background-color: rgb(209, 207, 207);
     padding-top: 1px;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .fa-solid.fa-star {
-    color: rgb(255, 173, 73);
+    color: orange;
 }
 
 .fa-solid.fa-star.off {

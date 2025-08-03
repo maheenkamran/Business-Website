@@ -1,7 +1,7 @@
 import './Footer.css';
 
-function Footer(){
-    return(
+function Footer() {
+    return (
         <div className='footer-container'>
             <div className='newsletter'>
                 <div id="subscription-text"><p>Subscribe to our newsletter</p></div>

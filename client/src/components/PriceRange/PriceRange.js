@@ -19,7 +19,20 @@ function PriceRange({ price, setPrice }) {
                 min={0}
                 max={50000}
                 step={100}
-            ></Slider>
+                sx={{
+                    color: 'grey', // changes the thumb and track color
+                    '& .MuiSlider-thumb': {
+                        backgroundColor: 'grey',
+                    },
+                    '& .MuiSlider-track': {
+                        backgroundColor: 'grey',
+                    },
+                    '& .MuiSlider-rail': {
+                        backgroundColor: '#ccc',
+                    }
+                }}
+            />
+
 
             <div>Rs {price[0]} - Rs {price[1]}</div>
         </div>

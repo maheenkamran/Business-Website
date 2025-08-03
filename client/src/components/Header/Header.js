@@ -15,7 +15,9 @@ function Header() {
         <>
             <div className="header-container">
                 <img id="logo" src="/images/icon.png" alt="logo"></img>
-                <div id="brand-name" onClick={() => (navigate("/"))}>BRAND</div>
+                <div id="brand-name" onClick={() => (navigate("/"))}>
+                    <img src="/images/brandname.png" alt="logo"></img>
+                </div>
                 <input id="search-bar" placeholder='Search'></input>
                 <button id="search-button">Search</button>
 
@@ -23,10 +25,10 @@ function Header() {
                     <i id="profile-icon" className="fa-solid fa-user"></i>
                     <p id="profile-text ">Profile</p>
                 </div>
-                <div className="message" onClick={() => { navigate(`/messages`) }}>
+                {/* <div className="message" onClick={() => { navigate(`/messages`) }}>
                     <i id="message-icon" className="fa-solid fa-message"></i>
                     <p id="message-text ">Messages</p>
-                </div>
+                </div> */}
                 <div className="cart" onClick={() => { navigate(`/cart?id=${user._id}`) }}>
                     <i id="cart-icon" className="fa-solid fa-cart-shopping"></i>
                     <p id="cart-text ">My Cart</p>
