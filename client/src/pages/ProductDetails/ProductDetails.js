@@ -15,7 +15,7 @@ function ProductDetails() {
     useEffect(() => {
         const fetchResults = async () => {
             try {
-                const result = await fetch(`http://localhost:3000/api/products/details?id=${id}`);
+                const result = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products/details?id=${id}`);
 
                 const data = await result.json();
                 console.log(data);
@@ -42,7 +42,7 @@ function ProductDetails() {
     const addToCart = async (userid, productid, quantity) => {
         console.log(userid, " ", productid, " ", quantity);
         try {
-            const res = await fetch(`http://localhost:3000/api/users/cart?userid=${userid}`, {
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/cart?userid=${userid}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/JSOn'

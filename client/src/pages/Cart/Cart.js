@@ -15,7 +15,7 @@ function Cart() {
 
     const getCart = async () => {
         try {
-            const data = await fetch(`http://localhost:3000/api/users/cart?id=${id}`);
+            const data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/cart?id=${id}`);
             const result = await data.json();
 
             setCart(result.cart ?? []); //only store cart array
@@ -28,7 +28,7 @@ function Cart() {
     useEffect(() => {
         const getCart = async () => {
             try {
-                const data = await fetch(`http://localhost:3000/api/users/cart?id=${id}`);
+                const data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/cart?id=${id}`);
                 const result = await data.json();
 
                 setCart(result.cart ?? []); //only store cart array
@@ -48,7 +48,7 @@ function Cart() {
                 for (const item of cart) { //each item of cart, not the index, the item
                     const productid = item.productid; //cheez ka productid
 
-                    const result = await fetch(`http://localhost:3000/api/products/details?id=${productid}`);
+                    const result = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products/details?id=${productid}`);
 
                     const data = await result.json();
                     products.push(data[0]); //since data gives array, we want object
@@ -63,7 +63,7 @@ function Cart() {
     }, [cart])
 
     const addquantity = async (productid) => {
-        const res = await fetch(`http://localhost:3000/api/users/add-cart?userid=${id}`,
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/add-cart?userid=${id}`,
             {
                 method: 'PUT',
                 headers: {
@@ -82,7 +82,7 @@ function Cart() {
     }
 
     const removequantity = async (productid) => {
-        const res = await fetch(`http://localhost:3000/api/users/remove-cart?userid=${id}`,
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/remove-cart?userid=${id}`,
             {
                 method: 'PUT',
                 headers: {
@@ -101,7 +101,7 @@ function Cart() {
     }
 
     const deletefromcart = async (productid, quantity) => {
-        const res = await fetch(`http://localhost:3000/api/users/delete-from-cart?userid=${id}`,
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/delete-from-cart?userid=${id}`,
             {
                 method: 'DELETE',
                 headers: {

@@ -20,13 +20,13 @@ function ProductListing() {
       try {
         let url = "";
         if (min && max)
-          url = `http://localhost:3000/api/products/price?category=${category}&min=${min}&max=${max}`;
+          url = `${process.env.REACT_APP_BACKEND_URL}/api/products/price?category=${category}&min=${min}&max=${max}`;
         else if ((condition !== 'Any') && (condition))
-          url = `http://localhost:3000/api/products/condition?category=${category}&condition=${condition}`;
+          url = `${process.env.REACT_APP_BACKEND_URL}/api/products/condition?category=${category}&condition=${condition}`;
         else if (condition === 'Any')
-          url = `http://localhost:3000/api/products?category=${category}`;
+          url = `${process.env.REACT_APP_BACKEND_URL}/api/products?category=${category}`;
         else
-          url = `http://localhost:3000/api/products?category=${category}`;
+          url = `${process.env.REACT_APP_BACKEND_URL}/api/products?category=${category}`;
 
         const result = await fetch(url);
         const data = await result.json();

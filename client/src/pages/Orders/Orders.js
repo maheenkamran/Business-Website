@@ -17,7 +17,7 @@ function Orders() {
         if (user) {
             const fetchOrders = async () => {
                 try {
-                    const res = await fetch(`http://localhost:3000/api/orders/${user._id}`);
+                    const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/orders/${user._id}`);
                     const data = await res.json();
 
                     if (res.ok) {
@@ -48,7 +48,7 @@ function Orders() {
                 }
                 if (productIds.length === 0) return;
                 const fetches = productIds.map(id =>
-                    fetch(`http://localhost:3000/api/products/details?id=${id}`)
+                    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products/details?id=${id}`)
                         .then(res => res.json())
                         .then(data => data[0])
                 );
@@ -71,7 +71,7 @@ function Orders() {
 
     const reviewComplete = async (productid) => {
 
-        const res = await fetch(`http://localhost:3000/api/reviews`, {
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/reviews`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
