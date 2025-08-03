@@ -16,45 +16,23 @@ function Profile() {
 
     const verifylogin = async () => {
         try {
-            const url = `${process.env.REACT_APP_BACKEND_URL}/api/users/verifyE?email=${email}&password=${password}`;
-            console.log("API URL:", url);
+            console.log(`${process.env.REACT_APP_BACKEND_URL}/api/users/verifyE?email=${email}&password=${password}`);
 
-            const res = await fetch(url, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-
-            const contentType = res.headers.get("content-type");
-
-            if (!res.ok) {
-                const text = await res.text();
-                console.error("❌ Error response from server:", text);
-                alert("Invalid credentials or backend error");
-                return;
-            }
-
-            if (!contentType || !contentType.includes("application/json")) {
-                const text = await res.text();
-                console.error("❌ Expected JSON, got HTML:", text);
-                alert("Backend returned unexpected response format.");
-                return;
-            }
-
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/verifyE?email=${email}&password=${password}`);
             const result = await res.json();
-            console.log("✅ Logged in user:", result);
 
-            setUser(result);
-            setIsSignedIn(true);
-            localStorage.setItem("user", JSON.stringify(result));
-
+            if (res.status === 200) {
+                setUser(result);
+                setIsSignedIn(true);
+                localStorage.setItem("user", JSON.stringify(result)); //browsers feature, key-value //object->string(stringify)
+            } else {
+                alert("Invalid credentials"); // Or handle error more nicely
+            }
         } catch (err) {
-            console.error("❌ Fetch failed:", err);
+            console.log(err);
             alert("Login error occurred");
         }
-    };
-
+    }
 
     const logout = () => {
         setIsSignedIn(false);
