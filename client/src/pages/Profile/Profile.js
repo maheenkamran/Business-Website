@@ -150,7 +150,7 @@ function Profile() {
                             onChange={(e) => { setPassword(e.target.value) }}></input>
 
                         <button className='login-btn' onClick={() => { verifylogin() }}>Login</button>
-                        <div>login with google etc</div>
+                        {/* <div>login with google etc</div> */}
                         <div className='signup-container'>
                             <p>Don't have an account?</p>
                             <p className='signup-text'>Sign Up</p>
