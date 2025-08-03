@@ -18,7 +18,7 @@ function Checkout() {
 
     const getCart = async () => {
         try {
-            const data = await fetch(`http://localhost:3000/api/users/cart?id=${id}`);
+            const data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/cart?id=${id}`);
             const result = await data.json();
 
             setCart(result.cart ?? []); //only store cart array
@@ -31,7 +31,7 @@ function Checkout() {
     useEffect(() => {
         const getCart = async () => {
             try {
-                const data = await fetch(`http://localhost:3000/api/users/cart?id=${id}`);
+                const data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/cart?id=${id}`);
                 const result = await data.json();
 
                 setCart(result.cart ?? []); //only store cart array ->products array in cart
@@ -51,7 +51,7 @@ function Checkout() {
                 for (const item of cart) { //each item of cart, not the index, the item
                     const productid = item.productid; //cheez ka productid
 
-                    const result = await fetch(`http://localhost:3000/api/products/details?id=${productid}`);
+                    const result = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products/details?id=${productid}`);
 
                     const data = await result.json();
                     products.push(data[0]); //since data gives array, we want object
@@ -83,7 +83,7 @@ function Checkout() {
 
     const completeOrder = async () => {
         try {
-            const res = await fetch(`http://localhost:3000/api/orders`, {
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/orders`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -99,7 +99,7 @@ function Checkout() {
             });
             if (res.ok) {
                 try {
-                    const res2 = await fetch(`http://localhost:3000/api/users/empty-cart?userid=${id}`,
+                    const res2 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/empty-cart?userid=${id}`,
                         {
                             method: 'DELETE',
                             headers: {
