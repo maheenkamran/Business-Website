@@ -1,5 +1,6 @@
 import './Profile.css'
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Orders from '../Orders/Orders';
@@ -7,6 +8,7 @@ import Orders from '../Orders/Orders';
 function Profile() {
     const options = { weekday: 'long', day: 'numeric', month: 'long' };
     const date = new Date().toLocaleDateString('en-US', options); //only date, not time
+    const navigate = useNavigate();
 
     const [isSignedIn, setIsSignedIn] = useState(false);
     const [email, setEmail] = useState();
@@ -153,7 +155,7 @@ function Profile() {
                         {/* <div>login with google etc</div> */}
                         <div className='signup-container'>
                             <p>Don't have an account?</p>
-                            <p className='signup-text'>Sign Up</p>
+                            <p className='signup-text' onClick={() => { navigate('/signup') }}>Sign Up</p>
                             {/* make signup page */}
                         </div>
                     </div>

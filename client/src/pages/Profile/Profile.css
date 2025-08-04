@@ -41,11 +41,12 @@
 
 .login-btn {
     margin: 25px 0px 25px 0px;
-    padding: 10px;
-    border: 1px solid rgb(180, 180, 180);
+    padding: 12px;
+    border: 1px solid rgb(84, 84, 84);
     border-radius: 5px;
     width: 72%;
-    background-color: rgb(254, 197, 92);
+    background-color: rgb(84, 84, 84);
+    color: white;
 }
 
 .signup-container {
