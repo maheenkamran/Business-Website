@@ -29,7 +29,14 @@ function Header() {
                     <i id="message-icon" className="fa-solid fa-message"></i>
                     <p id="message-text ">Messages</p>
                 </div> */}
-                <div className="cart" onClick={() => { navigate(`/cart?id=${user._id}`) }}>
+                <div className="cart" onClick={() => {
+                    if (user)
+                        navigate(`/cart?id=${user._id}`)
+                    else {
+                        navigate('/cart')
+                    }
+                }
+                }>
                     <i id="cart-icon" className="fa-solid fa-cart-shopping"></i>
                     <p id="cart-text ">My Cart</p>
                 </div>

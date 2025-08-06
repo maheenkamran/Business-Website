@@ -94,7 +94,7 @@
 }
 
 .delete-btn:hover {
-    background-color: rgb(206, 206, 206);
+    background-color: rgb(217, 95, 95);
     border-radius: 50px;
     cursor: pointer;
 }
@@ -217,4 +217,13 @@
 .emptycart-msg button:hover {
     background-color: rgb(81, 176, 81);
     cursor: pointer;
+}
+
+.loader-container-c {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    min-height: 300px;
+    margin: 150px 0px 0px 300px;
+    /* or any height you need */
 }

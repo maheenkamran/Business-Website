@@ -70,9 +70,18 @@ function ProductListing() {
                 <div className="products-container">
                   {Products.map((p) => (
                     <div className="product-item" onClick={() => { handleproductclick(p._id) }}>
-                      <div className="product-image">
-                        <img src={p.image} alt="product"></img>
-                      </div>
+
+                      {p.image ?
+                        (
+                          <div className="product-image">
+                            <img src={p.image} alt="product"></img>
+                          </div>
+                        ) :
+                        (<div className="loader-container-c">
+                          <div className="spinner"></div>
+                        </div>
+                        )
+                      }
                       <div className="product-price">Rs.{p.price}</div>
                       <div className="product-name">{p.name}</div>
                     </div>

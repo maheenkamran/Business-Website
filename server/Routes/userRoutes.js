@@ -195,12 +195,18 @@ router.put('/remove-cart', async (req, res) => {
       const itemIndex = user.cart.findIndex(i =>
         i.productid.toString() === productid);
 
-      user.cart[itemIndex].quantity -= 1;
-      product.stock += 1;
+      if (user.cart[itemIndex].quantity > 1) {
+        user.cart[itemIndex].quantity -= 1;
+        product.stock += 1;
 
-      await user.save();
-      await product.save();
-      res.status(200).json(user);
+        await user.save();
+        await product.save();
+        res.status(200).json(user);
+
+      } else {
+        return res.status(400).send('Cannot reduce quantity below 1');
+
+      }
     }
   }
   catch (err) {

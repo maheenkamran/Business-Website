@@ -130,6 +130,9 @@ function Orders() {
                                                         {currentReviewProductId === product._id ? (
                                                             <div className='review-popup'>
                                                                 <div className='review-box'>
+                                                                    <div className='review-popup-close-btn' onClick={() => { setCurrentReviewProductId() }}>
+                                                                        <i className="fa-solid fa-xmark"></i>
+                                                                    </div>
                                                                     <h2>Give a Review</h2>
 
                                                                     <div className='review-product'>
@@ -152,7 +155,8 @@ function Orders() {
                                                                     <button onClick={() => { reviewComplete(product._id, rating); setCurrentReviewProductId(null); setRating(0); setReview("") }}>Done</button>
                                                                 </div>
                                                             </div>
-                                                        ) : <p></p>}
+                                                        ) : <p></p>
+                                                        }
                                                     </div>
 
                                                 </div>

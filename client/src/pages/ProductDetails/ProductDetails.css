@@ -185,3 +185,43 @@
     font-weight: bold;
     white-space: nowrap;
 }
+
+.atc-popup {
+    position: fixed;
+    top: 60px;
+    left: 885px;
+    display: flex;
+    z-index: 999;
+
+}
+
+.atc-container {
+    background-color: rgb(231, 231, 231);
+    border: 1px solid black;
+    width: 280px;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 10px 0px 7px;
+}
+
+.atc-container img {
+    width: 60px;
+    height: 60px;
+}
+
+.popup-name-msg {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+    font-size: 13px;
+    color: grey;
+}
+
+.popup-prod-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: black;
+    margin-bottom: 5px;
+}

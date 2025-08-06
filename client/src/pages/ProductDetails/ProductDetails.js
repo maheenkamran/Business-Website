@@ -11,6 +11,8 @@ function ProductDetails() {
     const [product, setProduct] = useState(null);
     const [qty, setQty] = useState(1);
     const user = JSON.parse(localStorage.getItem("user")); //make into obj, as otherwise it returns string
+    const [showPopup, setShowPopup] = useState(false);
+
 
     useEffect(() => {
         const fetchResults = async () => {
@@ -56,7 +58,13 @@ function ProductDetails() {
             const result = await res.json();
 
             if (res.ok) {
-                console.log("Cart updated.", result);
+                const audio = new Audio('/sounds/popup-sound.mp3');
+                audio.play();
+                setShowPopup(true);
+
+                setTimeout(() => {
+                    setShowPopup(false);
+                }, 2500);
             } else {
                 console.log("Error: ", result);
             }
@@ -68,6 +76,23 @@ function ProductDetails() {
 
     return (<>
         <Header />
+
+
+        {showPopup ? (
+            <div className='atc-popup'>
+                <div className='atc-container'>
+                    <img src={product.image} alt="product-image" ></img>
+                    <div className='popup-name-msg'>
+                        <div className='popup-prod-name'>
+                            {qty}x  {product.name}
+                        </div>
+                        <div>Added to Cart</div>
+                    </div>
+                </div>
+            </div >
+        ) : (<p></p>)
+        }
+
 
         {!product ?
             //ternary operator is necessary 
@@ -107,7 +132,7 @@ function ProductDetails() {
                                 <p className='qty-num'>{qty}</p>
                                 <button onClick={() => { addQty(qty) }}>+</button>
                             </div>
-                            <button className='add-to-cart-btn' onClick={() => { addToCart(user._id, product._id, qty) }}>Add to Cart</button>
+                            <button className='add-to-cart-btn' onClick={() => { addToCart(user._id, product._id, qty); }}>Add to Cart</button>
                             <button className='buy-now-btn'>Buy Now</button>
                         </div>
 
