@@ -56,7 +56,11 @@ function Profile() {
             {isSignedIn && user.role === 'user' ? (
                 <div className='profile-container'>
                     <div className='profile-panel-section'>
-                        <div className='brandname'>brandname</div>
+
+                        <div className='logo-signup'>
+                            <img id="s-brand-name" src="/images/brandname.png" alt="brand" />
+                        </div>
+
                         <div className='pp-line'></div>
                         <div className='pp-section' onClick={() => { setSelected("dashboard") }}><i className="fa-solid fa-house-user"></i><p>Dashboard</p></div>
                         <div className='pp-section' onClick={() => { setSelected("orders") }} ><i className="fa-solid fa-bag-shopping"></i><p>My Orders</p></div>
@@ -108,7 +112,7 @@ function Profile() {
                                 <div className='add-text'>Address</div>
                                 {/* <div className='add-line'></div> */}
                                 <div className='add-info'>
-                                    <div className='pi-fn'><h2>Country</h2><p>Pakistan</p></div>
+                                    <div className='pi-fn-country'><h2>Country</h2><p>Pakistan</p></div>
                                     <div className='pi-fn'><h2>City</h2><p>{user.city}</p></div>
                                 </div>
                             </div>
@@ -125,17 +129,17 @@ function Profile() {
                     }
                     {
                         selected === "reviews" && (
-                            <div>hi reviews</div>
+                            <div>reviews</div>
                         )
                     }
                     {
                         selected === "about" && (
-                            <div>hi about</div>
+                            <div>about</div>
                         )
                     }
                     {
                         selected === "contact" && (
-                            <div>hi contact</div>
+                            <div>contact</div>
                         )
                     }
                 </div>
@@ -156,7 +160,6 @@ function Profile() {
                         <div className='signup-container'>
                             <p>Don't have an account?</p>
                             <p className='signup-text' onClick={() => { navigate('/signup') }}>Sign Up</p>
-                            {/* make signup page */}
                         </div>
                     </div>
                 </div>

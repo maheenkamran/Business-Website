@@ -1,7 +1,7 @@
 .pop-up-container {
     display: flex;
     justify-content: center;
-    background-color: rgb(255, 250, 244);
+    background-color: rgb(146, 145, 145);
 }
 
 .pop-up {
@@ -42,11 +42,16 @@
 .login-btn {
     margin: 25px 0px 25px 0px;
     padding: 12px;
-    border: 1px solid rgb(84, 84, 84);
+    border: 1px solid rgb(40, 79, 38);
     border-radius: 5px;
     width: 72%;
-    background-color: rgb(84, 84, 84);
+    background-color: rgb(40, 79, 38);
     color: white;
+}
+
+.login-btn:hover {
+    cursor: pointer;
+    background-color: rgb(75, 122, 75);
 }
 
 .signup-container {
@@ -76,8 +81,7 @@
     flex-direction: column;
 }
 
-.brandname {
-    font-size: 24px;
+.pp-brand-logo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -288,6 +292,19 @@
     font-size: 15px;
     margin: 3px 30px 10px 0px;
     padding-left: 20px;
+}
+
+.pi-fn-country {
+    margin: 0px 215px 15px 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pi-fn-country h2 {
+    color: rgb(105, 105, 105);
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 600px;
 }
 
 .add-line {

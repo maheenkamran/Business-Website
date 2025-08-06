@@ -181,3 +181,40 @@
     background-color: rgb(58, 58, 58);
     cursor: pointer;
 }
+
+.emptycart-msg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 70px 0px 70px 0px;
+}
+
+.empty-cart-img {
+    width: 130px;
+    height: 130px;
+    filter: grayscale(100%);
+    border-radius: 50%;
+    border: 1px solid rgb(164, 163, 163);
+    box-shadow: 0 4px 8px rgba(110, 110, 110, 0.2);
+    margin-bottom: 20px;
+}
+
+.em-text {
+    margin-top: 5px;
+    color: grey;
+    font-size: 15px;
+}
+
+.emptycart-msg button {
+    margin-top: 15px;
+    padding: 10px;
+    border: none;
+    background-color: green;
+    color: white;
+}
+
+.emptycart-msg button:hover {
+    background-color: rgb(81, 176, 81);
+    cursor: pointer;
+}

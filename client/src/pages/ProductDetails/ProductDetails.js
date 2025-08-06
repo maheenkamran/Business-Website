@@ -72,44 +72,82 @@ function ProductDetails() {
         {!product ?
             //ternary operator is necessary 
             //as 1 sec for loading etc causes problems->loading screen is imp
-            (<p>Loading</p>) :
             (
-                <div className="p-item" >
+                <div className="loader-container-pd">
+                    <div className="spinner"></div>
+                </div>
+            ) :
+            (
+                <div className='product-detail-page'>
+                    <div className="p-item" >
 
-                    <div className="p-image">
-                        <img src={product.image} alt="product"></img>
-                    </div>
-
-                    <div className='product-attributes'>
-
-                        {product.stock ? (
-                            <div className="p-stock-true">
-                                <i className="fa-solid fa-check" ></i>
-                                <p>In stock</p>
-                            </div>
-                        ) : (
-                            <div className="p-stock-false">
-                                <i className="fa-solid fa-xmark" ></i>
-                                <p>Out of stock</p>
-                            </div>
-                        )}
-
-                        <div className="p-name">{product.name}</div>
-                        <div className="p-price">Rs.{product.price}</div>
-                        <div className='p-quantity'>
-                            <p>Quantity</p>
-                            <button onClick={() => { minusQty(qty) }}>-</button>
-                            <p className='qty-num'>{qty}</p>
-                            <button onClick={() => { addQty(qty) }}>+</button>
+                        <div className="p-image">
+                            <img src={product.image} alt="product"></img>
                         </div>
-                        <button className='add-to-cart-btn' onClick={() => { addToCart(user._id, product._id, qty) }}>Add to Cart</button>
-                        <button className='buy-now-btn'>Buy Now</button>
-                    </div>
 
-                    <div className='delivery-details'>
-                        <p>Delivery details</p>
-                    </div>
-                </div >
+                        <div className='product-attributes'>
+
+                            {product.stock ? (
+                                <div className="p-stock-true">
+                                    <i className="fa-solid fa-check" ></i>
+                                    <p>In stock</p>
+                                </div>
+                            ) : (
+                                <div className="p-stock-false">
+                                    <i className="fa-solid fa-xmark" ></i>
+                                    <p>Out of stock</p>
+                                </div>
+                            )}
+
+                            <div className="p-name">{product.name}</div>
+                            <div className="p-price">Rs.{product.price}</div>
+                            <div className='p-quantity'>
+                                <p>Quantity</p>
+                                <button onClick={() => { minusQty(qty) }}>-</button>
+                                <p className='qty-num'>{qty}</p>
+                                <button onClick={() => { addQty(qty) }}>+</button>
+                            </div>
+                            <button className='add-to-cart-btn' onClick={() => { addToCart(user._id, product._id, qty) }}>Add to Cart</button>
+                            <button className='buy-now-btn'>Buy Now</button>
+                        </div>
+
+
+                        <div className="delivery-section">
+                            <div className="delivery-box">
+                                <h4 className="section-heading">Delivery Options</h4>
+                                <div className="delivery-row">
+                                    <i className="fa-solid fa-location-dot icon"></i>
+                                    <p>Pakistan </p>
+                                </div>
+                                <div className="delivery-row">
+                                    <i className="fa-solid fa-truck-fast icon"></i>
+                                    <div className="delivery-info">
+                                        <p className="bold-text">Standard Delivery</p>
+                                        <p className="sub-text">Estimated Delivery: 5-7 days</p>
+                                    </div>
+                                    <p className="price">Rs. 200</p>
+                                </div>
+                                <div className="delivery-row">
+                                    <i className="fa-solid fa-money-bill-wave icon"></i>
+                                    <p>Cash on Delivery Available</p>
+                                </div>
+                            </div>
+
+                            <div className="delivery-box">
+                                <h4 className="section-heading">Return & Warranty</h4>
+                                <div className="delivery-row">
+                                    <i className="fa-solid fa-rotate-left icon"></i>
+                                    <p>14 days easy return</p>
+                                </div>
+                                <div className="delivery-row">
+                                    <i className="fa-solid fa-shield-halved icon"></i>
+                                    <p>Warranty not available</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div >
+                </div>
             )
         }
         <Footer />

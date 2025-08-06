@@ -147,7 +147,12 @@ function Cart() {
             <Header />
             {
                 cart.length === 0 ? (
-                    <div className='emptycart-msg'>Cart is Empty</div>
+                    <div className='emptycart-msg'>
+                        <img className="empty-cart-img" src="/images/cart.jpg" alt="empty-cart"></img>
+                        <h2>Your cart is empty</h2>
+                        <div className='em-text'>You haven't purchased anything yet.</div>
+                        <button onClick={() => { navigate("/") }}>Start Shopping</button>
+                    </div>
                 ) :
                     <div className='cart-container '>
                         <div className='cart-items'>

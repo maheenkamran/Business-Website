@@ -14,6 +14,7 @@ function ProductListing() {
   const max = searchParams.get('max');
   const condition = searchParams.get('condition');
   const [Products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true); // Initially true
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -45,6 +46,10 @@ function ProductListing() {
   const handleproductclick = (id) => {
     navigate(`/product-details?id=${id}`);
   }
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
 
   return (
     <>
@@ -57,7 +62,9 @@ function ProductListing() {
           {
             Products.length === 0 ?
               (
-                <h3>NO products available</h3>
+                <div className="loader-container">
+                  <div className="spinner"></div>
+                </div>
               ) :
               (
                 <div className="products-container">
