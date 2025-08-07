@@ -217,7 +217,7 @@ function ProductDetails() {
                                 })}
                             </div>
 
-                            <h4>{reviews.length} Ratings</h4>
+                            {reviews.length > 1 ? (<h4>{reviews.length} Ratings</h4>) : (<h4>1 Rating</h4>)}
                         </div>
                         <div className='r-line'></div>
                         <p>Product Reviews</p>
@@ -227,16 +227,21 @@ function ProductDetails() {
                         {reviews && reviews.map((review) => (
 
                             <div className='review-box-one'>
-                                <div className="rating-stars-fill-small">
-                                    {[1, 2, 3, 4, 5].map((star) => (
-                                        <i
-                                            key={star}
-                                            className={`fa-star fa-solid ${averageRating >= star ? 'filled' : 'unfilled'}`}
-                                        ></i>
-                                    ))}
+                                <div className='rb-left'>
+                                    <h3>{review.username}</h3>
                                 </div>
-                                <div className='rb-username'>{review.username}</div>
-
+                                <div className='rb-right'>
+                                    <div className="rating-stars-fill-small">
+                                        {[1, 2, 3, 4, 5].map((star) => (
+                                            <i
+                                                key={star}
+                                                className={`fa-star fa-solid ${averageRating >= star ? 'filled' : 'unfilled'}`}
+                                            ></i>
+                                        ))}
+                                    </div>
+                                    <div className='review-text'> {review.reviewtext}</div>
+                                </div>
+                                <div className='review-date'>date</div>
                             </div>
 
                         ))}

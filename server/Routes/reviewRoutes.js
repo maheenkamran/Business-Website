@@ -5,6 +5,7 @@ const Reviews = require('../models/Reviews');
 
 router.post('/', async (req, res) => {
     try {
+        console.log("Received review data:", req.body); // 👈 Add this
         const newReview = new Reviews(req.body);
         await newReview.save();
 
