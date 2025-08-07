@@ -17,6 +17,17 @@ router.post('/', async (req, res) => {
 
 router.get('/', async (req, res) => {
     try {
+        const { productid } = req.query;
+        const review = await Reviews.find({ productid: productid });
+
+        res.status(200).send(review);
+    }
+    catch (err) {
+        res.status(400).send({ err: err.message });
+    }
+})
+router.get('/user', async (req, res) => {
+    try {
         const { userid } = req.query;
         const review = await Reviews.find({ userid: userid });
 

@@ -78,6 +78,7 @@ function Orders() {
             },
             body: JSON.stringify({
                 userid: user._id,
+                username: user.Fname,
                 productid: productid,
                 rating: rating,
                 reviewtext: review

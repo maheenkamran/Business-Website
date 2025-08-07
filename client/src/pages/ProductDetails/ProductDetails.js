@@ -12,7 +12,8 @@ function ProductDetails() {
     const [qty, setQty] = useState(1);
     const user = JSON.parse(localStorage.getItem("user")); //make into obj, as otherwise it returns string
     const [showPopup, setShowPopup] = useState(false);
-
+    const [reviews, setReviews] = useState([]);
+    const [averageRating, setAverageRating] = useState(0);
 
     useEffect(() => {
         const fetchResults = async () => {
@@ -20,7 +21,6 @@ function ProductDetails() {
                 const result = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products/details?id=${id}`);
 
                 const data = await result.json();
-                console.log(data);
                 setProduct(data[0]); //since data gives array, we want object 
             }
             catch (err) {
@@ -30,7 +30,30 @@ function ProductDetails() {
 
         fetchResults();
 
-    }, [id])
+        const getReviews = async () => {
+            try {
+                const data = await fetch(`http://localhost:3000/api/reviews?productid=${id}`);
+
+                const result = await data.json();
+                setReviews(result);
+
+            }
+            catch (err) {
+                console.log({ err: err.message });
+            }
+        }
+        getReviews();
+
+
+    }, [id]);
+    useEffect(() => {
+        const total = reviews.reduce((acc, review) => acc + review.rating, 0);
+        const avg = reviews.length > 0 ? total / reviews.length : 0;
+
+        setAverageRating(avg);
+        console.log(avg);
+
+    }, [reviews]);
 
     const minusQty = (q) => {
         if (q > 1)
@@ -42,7 +65,6 @@ function ProductDetails() {
     }
 
     const addToCart = async (userid, productid, quantity) => {
-        console.log(userid, " ", productid, " ", quantity);
         try {
             const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/cart?userid=${userid}`, {
                 method: 'PUT',
@@ -172,7 +194,57 @@ function ProductDetails() {
                         </div>
 
                     </div >
+
+                    <div className='review-section'>
+
+                        <div className='avg-review-box'>
+                            <div className='rating-num'>
+                                {averageRating === 0 ? (<h2>-</h2>) : (
+                                    <h2>{averageRating} </h2>)}
+                                <h3>/5</h3>
+                            </div>
+                            <div className="rating-stars-fill">
+                                {[1, 2, 3, 4, 5].map((star) => {
+                                    let iconClass = 'fa-regular fa-star'; // empty star
+
+                                    if (averageRating >= star) {
+                                        iconClass = 'fa-solid fa-star'; // full star
+                                    } else if (averageRating >= star - 0.5) {
+                                        iconClass = 'fa-solid fa-star-half-stroke'; // half star
+                                    }
+
+                                    return <i key={star} className={iconClass}></i>;
+                                })}
+                            </div>
+
+                            <h4>{reviews.length} Ratings</h4>
+                        </div>
+                        <div className='r-line'></div>
+                        <p>Product Reviews</p>
+                        <div className='r-line'></div>
+
+
+                        {reviews && reviews.map((review) => (
+
+                            <div className='review-box-one'>
+                                <div className="rating-stars-fill-small">
+                                    {[1, 2, 3, 4, 5].map((star) => (
+                                        <i
+                                            key={star}
+                                            className={`fa-star fa-solid ${averageRating >= star ? 'filled' : 'unfilled'}`}
+                                        ></i>
+                                    ))}
+                                </div>
+                                <div className='rb-username'>{review.username}</div>
+
+                            </div>
+
+                        ))}
+
+                    </div>
                 </div>
+
+
             )
         }
         <Footer />
