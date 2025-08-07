@@ -157,7 +157,7 @@ function Cart() {
                         <div className='emptycart-msg'>
                             <img className="empty-cart-img" src="/images/cart.jpg" alt="empty-cart"></img>
                             <h2>Your cart is empty</h2>
-                            <div className='em-text'>You haven't purchased anything yet.</div>
+                            <div className='em-text'>You haven't added anything to cart.</div>
                             <button onClick={() => { navigate("/") }}>Start Shopping</button>
                         </div>
                     ) :

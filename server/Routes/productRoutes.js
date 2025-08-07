@@ -69,6 +69,21 @@ Router.get('/condition', async (req, res) => {
         res.status(400).send({ error: err.message });
     }
 })
+// pehle i need to add a rating attribute in product model
+Router.get('/rating', async (req, res) => {
+    try {
+        const { category, r } = req.query;
+
+        const products = await Product.find({
+            category: category,
+            rating: { $gte: Number(r) }
+        });
+        res.status(200).json(products);
+    }
+    catch (err) {
+        res.status(400).send({ error: err.message });
+    }
+})
 Router.get('/details', async (req, res) => {
     try {
         const { id } = req.query;

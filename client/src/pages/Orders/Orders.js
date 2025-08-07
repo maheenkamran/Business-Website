@@ -11,7 +11,7 @@ function Orders() {
     const [fetchedProductIds, setFetchedProductIds] = useState(new Set());
     const [currentReviewProductId, setCurrentReviewProductId] = useState(null); //product we are reviewing
     const [review, setReview] = useState("");
-    const [rating, setRating] = useState(0);
+    const [rating, setRating] = useState(1);
 
     useEffect(() => {
         if (user) {
@@ -141,19 +141,20 @@ function Orders() {
                                                                         <div className='op-name'>{product.name}</div>
                                                                     </div>
 
-
-                                                                    <div className='stars'>
-                                                                        <div className='rating-star'> <i className={`fa-solid fa-star ${rating >= 1 ? 'selected' : ''}`} onClick={() => { setRating(1) }}></i></div>
-                                                                        <div className='rating-star'> <i className={`fa-solid fa-star ${rating >= 2 ? 'selected' : ''}`} onClick={() => { setRating(2) }}></i></div>
-                                                                        <div className='rating-star'> <i className={`fa-solid fa-star ${rating >= 3 ? 'selected' : ''}`} onClick={() => { setRating(3) }}></i></div>
-                                                                        <div className='rating-star'> <i className={`fa-solid fa-star ${rating >= 4 ? 'selected' : ''}`} onClick={() => { setRating(4) }}></i></div>
-                                                                        <div className='rating-star'> <i className={`fa-solid fa-star ${rating === 5 ? 'selected' : ''}`} onClick={() => { setRating(5) }}></i></div>
+                                                                    <div className='stars-num'>
+                                                                        <div className='stars'>
+                                                                            <div className='rating-star'> <i className={`fa-solid fa-star ${rating >= 1 ? 'selected' : ''}`} onClick={() => { setRating(1) }}></i></div>
+                                                                            <div className='rating-star'> <i className={`fa-solid fa-star ${rating >= 2 ? 'selected' : ''}`} onClick={() => { setRating(2) }}></i></div>
+                                                                            <div className='rating-star'> <i className={`fa-solid fa-star ${rating >= 3 ? 'selected' : ''}`} onClick={() => { setRating(3) }}></i></div>
+                                                                            <div className='rating-star'> <i className={`fa-solid fa-star ${rating >= 4 ? 'selected' : ''}`} onClick={() => { setRating(4) }}></i></div>
+                                                                            <div className='rating-star'> <i className={`fa-solid fa-star ${rating === 5 ? 'selected' : ''}`} onClick={() => { setRating(5) }}></i></div>
+                                                                        </div>
+                                                                        <div className='rating-digit'>{rating}/5</div>
                                                                     </div>
-
-                                                                    <input className='review-text-box' placeholder='How was your product?'
+                                                                    <textarea className='review-text-box' placeholder='How was your product?'
                                                                         value={review} onChange={(e) => { setReview(e.target.value) }} />
 
-                                                                    <button onClick={() => { reviewComplete(product._id, rating); setCurrentReviewProductId(null); setRating(0); setReview("") }}>Done</button>
+                                                                    <button onClick={() => { reviewComplete(product._id, rating); setCurrentReviewProductId(null); setRating(1); setReview("") }}>Done</button>
                                                                 </div>
                                                             </div>
                                                         ) : <p></p>
@@ -162,7 +163,10 @@ function Orders() {
 
                                                 </div>
 
-                                            ) : 'Loading'}
+                                            ) :
+                                                <div className="loader-container-pd">
+                                                    <div className="spinner"></div>
+                                                </div>}
                                             </div>
                                         );
                                     })

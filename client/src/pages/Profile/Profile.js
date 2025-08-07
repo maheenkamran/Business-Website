@@ -64,7 +64,6 @@ function Profile() {
                         <div className='pp-line'></div>
                         <div className='pp-section' onClick={() => { setSelected("dashboard") }}><i className="fa-solid fa-house-user"></i><p>Dashboard</p></div>
                         <div className='pp-section' onClick={() => { setSelected("orders") }} ><i className="fa-solid fa-bag-shopping"></i><p>My Orders</p></div>
-                        <div className='pp-section' onClick={() => { setSelected("reviews") }} ><i className="fa-solid fa-message"></i><p>Reviews</p></div>
                         <div className='pp-section' onClick={() => { setSelected("about") }} ><i className="fa-solid fa-clipboard-question"></i><p>About</p></div>
                         <div className='pp-section' onClick={() => { setSelected("contact") }} ><i className="fa-solid fa-address-book"></i><p>Contact</p></div>
                         <div className='pp-logout' onClick={() => { logout() }} ><p>Logout</p><i className="fa-solid fa-right-from-bracket" ></i></div>
@@ -125,11 +124,6 @@ function Profile() {
                                 <Orders />
                             </div>
 
-                        )
-                    }
-                    {
-                        selected === "reviews" && (
-                            <div>reviews</div>
                         )
                     }
                     {

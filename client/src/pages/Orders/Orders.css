@@ -131,14 +131,24 @@
     border: 1px solid black;
 }
 
+.stars-num {
+    display: flex;
+}
+
 .stars {
-    margin: 20px 0px 10px 0px;
+    margin: 20px 0px 10px 20px;
     padding: 10px;
     background-color: rgb(192, 192, 192);
     border: none;
     border-radius: 10px;
     font-size: 24px;
     display: flex;
+}
+
+.rating-digit {
+    color: rgb(213, 212, 212);
+    font-size: 12px;
+    margin: 50px 0px 0px 15px;
 }
 
 .rating-star {
@@ -150,8 +160,12 @@
     color: white;
 }
 
+.rating-star .fa-star {
+    color: grey;
+}
+
 .rating-star .fa-star.selected {
-    color: gold;
+    color: rgb(255, 237, 35);
 }
 
 .review-text-box {
@@ -172,6 +186,6 @@
 }
 
 .review-box button:hover {
-    background-color: rgb(250, 238, 214);
+    background-color: rgb(90, 189, 95);
     cursor: pointer;
 }

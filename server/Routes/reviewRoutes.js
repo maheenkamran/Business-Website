@@ -27,6 +27,7 @@ router.get('/', async (req, res) => {
         res.status(400).send({ err: err.message });
     }
 })
+
 router.get('/user', async (req, res) => {
     try {
         const { userid } = req.query;
@@ -38,4 +39,6 @@ router.get('/user', async (req, res) => {
         res.status(400).send({ err: err.message });
     }
 })
+
+
 module.exports = router;

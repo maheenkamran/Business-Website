@@ -198,55 +198,67 @@ function ProductDetails() {
                     <div className='review-section'>
 
                         <div className='avg-review-box'>
+                            <div className="rating-stars-fill">
+                                {[1, 2, 3, 4, 5].map((star) => {
+                                    let iconClass = 'fa-regular fa-star';
+
+                                    if (averageRating >= star) {
+                                        iconClass = 'fa-solid fa-star';
+                                    } else if (averageRating >= star - 0.5) {
+                                        iconClass = 'fa-solid fa-star-half-stroke';
+                                    }
+
+                                    return <i key={star} className={iconClass + " avg-star"}></i>;
+                                })}
+                            </div>
+
+
+                            {reviews.length > 1 ? (<h4>{reviews.length} Ratings</h4>) : (<h4>{reviews.length} Rating</h4>)}
                             <div className='rating-num'>
                                 {averageRating === 0 ? (<h2>-</h2>) : (
                                     <h2>{averageRating} </h2>)}
                                 <h3>/5</h3>
                             </div>
-                            <div className="rating-stars-fill">
-                                {[1, 2, 3, 4, 5].map((star) => {
-                                    let iconClass = 'fa-regular fa-star'; // empty star
-
-                                    if (averageRating >= star) {
-                                        iconClass = 'fa-solid fa-star'; // full star
-                                    } else if (averageRating >= star - 0.5) {
-                                        iconClass = 'fa-solid fa-star-half-stroke'; // half star
-                                    }
-
-                                    return <i key={star} className={iconClass}></i>;
-                                })}
-                            </div>
-
-                            {reviews.length > 1 ? (<h4>{reviews.length} Ratings</h4>) : (<h4>1 Rating</h4>)}
                         </div>
+
                         <div className='r-line'></div>
                         <p>Product Reviews</p>
                         <div className='r-line'></div>
 
 
                         {reviews && reviews.map((review) => (
-
-                            <div className='review-box-one'>
-                                <div className='rb-left'>
-                                    <h3>{review.username}</h3>
-                                </div>
-                                <div className='rb-right'>
-                                    <div className="rating-stars-fill-small">
-                                        {[1, 2, 3, 4, 5].map((star) => (
-                                            <i
-                                                key={star}
-                                                className={`fa-star fa-solid ${averageRating >= star ? 'filled' : 'unfilled'}`}
-                                            ></i>
-                                        ))}
+                            <>
+                                <div className='review-box-one'>
+                                    <div className='rb-left'>
+                                        <h4>{review.username}</h4>
                                     </div>
-                                    <div className='review-text'> {review.reviewtext}</div>
-                                </div>
-                                <div className='review-date'>date</div>
-                            </div>
+                                    <div className='rb-right'>
+                                        <div className="rating-stars-fill-small">
+                                            {[1, 2, 3, 4, 5].map((star) => (
+                                                <i
+                                                    key={star}
+                                                    className={`fa-star fa-solid review-star ${review.rating >= star ? 'filled' : 'unfilled'}`}
+                                                ></i>
+                                            ))}
+                                        </div>
 
+                                        <div className='review-text'> {review.reviewtext}</div>
+                                    </div>
+                                    <div className='review-date'>
+                                        {new Date(review.date).toLocaleDateString('en-GB', {
+                                            day: '2-digit',
+                                            month: 'short',
+                                            year: 'numeric'
+                                        })}
+                                    </div>
+                                </div>
+
+                                <div className='r-line'></div>
+                            </>
                         ))}
 
                     </div>
+
                 </div>
 
 
