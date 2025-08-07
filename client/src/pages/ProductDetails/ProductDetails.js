@@ -32,7 +32,7 @@ function ProductDetails() {
 
         const getReviews = async () => {
             try {
-                const data = await fetch(`http://localhost:3000/api/reviews?productid=${id}`);
+                const data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/reviews?productid=${id}`);
 
                 const result = await data.json();
                 setReviews(result);
