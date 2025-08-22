@@ -1,250 +1,103 @@
-// routes/userRoutes.js
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const User = require('../models/User');
-const Product = require('../models/Product');
+const User = require("../models/User");
 
-router.get('/', async (req, res) => {
-  try {
-    const users = await User.find();
-    res.status(200).json(users);
-  }
-  catch (err) {
-    res.status(400).send({ error: err.message });
-  }
-})
+// ✅ Register user
+router.post("/register", async (req, res) => {
+    try {
+        const { Fname, Lname, email, password, role } = req.body;
 
-router.post('/', async (req, res) => {
-  try {
-    const newUser = new User(req.body);
-    await newUser.save();
+        // validation
+        if (!Fname || !Lname || !email || !password) {
+            return res.status(400).json({ message: "All fields are required" });
+        }
 
-    res.status(201).send(newUser);
-  }
-  catch (err) {
-    res.status(400).send({ error: err.message });
-  }
+        // check duplicate email
+        const existing = await User.findOne({ email });
+        if (existing) {
+            return res.status(400).json({ message: "Email already exists" });
+        }
+
+        // assign role, default to "user" if not given
+        const newUser = new User({
+            Fname,
+            Lname,
+            email,
+            password,
+            role: role || "user"
+        });
+
+        await newUser.save();
+
+        res.status(201).json({ message: "User registered successfully", user: newUser });
+    } catch (error) {
+        res.status(500).json({ message: "Server error", error });
+    }
 });
 
-router.get('/verifyP', async (req, res) => {
-  try {
-    const { phone, password } = req.query;
 
-    const user = await User.findOne({ phone: phone, password: password });
-    if (!user || user.length === 0) {
-      res.status(400).send({ error: 'User not found' });
-    }
-    res.status(200).json(user);
-  }
-  catch (err) {
-    res.status(400).send({ error: err.message });
-  }
-})
+// ✅ Login user
+router.post("/login", async (req, res) => {
+    try {
+        const { email, password } = req.body;
 
-router.get('/verifyE', async (req, res) => {
-  try {
-    const { email, password } = req.query;
-
-    const user = await User.findOne({ email: email, password: password });
-    if (!user || user.length === 0) {
-      res.status(400).send({ error: 'User not found' });
-    }
-    res.status(200).json(user);
-  }
-  catch (err) {
-    res.status(400).send({ error: err.message });
-  }
-})
-
-router.get('/cart', async (req, res) => {
-  try {
-    const { id } = req.query;
-
-    const userCart = await User.findOne({ _id: id }).select('cart');
-    if (!userCart || userCart.length === 0)
-      return res.status(400).send('Cart is empty');
-
-    res.status(200).json(userCart);
-  }
-  catch (err) {
-    res.status(400).send({ error: err.message });
-  }
-})
-router.put('/cart', async (req, res) => {
-  try {
-    const { userid } = req.query;
-    const { productid, quantity } = req.body;
-
-    const user = await User.findOne({ _id: userid });
-    const product = await Product.findOne({ _id: productid });
-
-    if (!user)
-      return res.status(400).send('no user found');
-    else {
-      if (!user.cart) {
-        user.cart = [];
-      }
-      const itemIndex = user.cart.findIndex(i =>
-        i.productid.toString() === productid); //findindex to get index, otherwise find
-      //i for each element i, i returns index or if not avaialble then undefined
-      //to string because warna prdouctid is an object, so for comparsion converting to string is imp
-
-      if (itemIndex !== -1) { //if not found
-        if ((user.cart[itemIndex].quantity + quantity) <= product.stock) {
-
-          user.cart[itemIndex].quantity += quantity;
-          product.stock -= quantity;
+        const user = await User.findOne({ email, password });
+        if (!user) {
+            return res.status(401).json({ message: "Invalid credentials" });
         }
-        else {
-          return res.status(400).send('Out of stock');
-        }
-      }
-      else {
-        user.cart.push({ productid, quantity });
-      }
-      await user.save();
-      res.status(200).json(user);
+
+        res.status(200).json({ message: "Login successful", user });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
-  }
-  catch (err) {
-    res.status(400).send({ error: err.message });
-  }
-})
+});
 
-router.delete('/delete-from-cart', async (req, res) => {
-  try {
-    const { userid } = req.query;
-    const { productid, quantity } = req.body;
-
-    const user = await User.findOne({ _id: userid });
-    const product = await Product.findOne({ _id: productid });
-
-    if (!user)
-      return res.status(400).send('no user found');
-    else {
-      if (!user.cart) {
-        user.cart = [];
-      }
-      const itemIndex = user.cart.findIndex(i =>
-        i.productid.toString() === productid);
-
-      user.cart.splice(itemIndex, 1); //means “remove 1 item starting from that index”
-      product.stock += quantity;
-
-      await user.save();
-      await product.save();
-      res.status(200).json(user);
+// ✅ Get all users
+router.get("/", async (req, res) => {
+    try {
+        const users = await User.find();
+        res.json(users);
+    } catch (error) {
+        res.status(500).json({ message: "Server error", error });
     }
-  }
-  catch (err) {
-    res.status(400).send({ error: err.message });
-  }
-})
+});
 
-router.put('/add-cart', async (req, res) => {
-  try {
-    const { userid } = req.query;
-    const { productid } = req.body;
-
-    const user = await User.findOne({ _id: userid });
-    const product = await Product.findOne({ _id: productid });
-
-    if (!user)
-      return res.status(400).send('no user found');
-    else {
-      if (!user.cart) {
-        user.cart = [];
-      }
-      const itemIndex = user.cart.findIndex(i =>
-        i.productid.toString() === productid);
-
-      if ((user.cart[itemIndex].quantity + 1) <= product.stock) {
-
-        user.cart[itemIndex].quantity += 1;
-        product.stock -= 1;
-      }
-      else {
-        return res.status(400).send('Out of stock');
-      }
-
-      await user.save();
-      await product.save();
-
-      res.status(200).json(user);
+// ✅ Get user by ID
+router.get("/:id", async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        if (!user) return res.status(404).json({ message: "User not found" });
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ message: "Server error", error });
     }
-  }
-  catch (err) {
-    res.status(400).send({ error: err.message });
-  }
-})
+});
 
-router.put('/remove-cart', async (req, res) => {
-  try {
-    const { userid } = req.query;
-    const { productid } = req.body;
-
-    const user = await User.findOne({ _id: userid });
-    const product = await Product.findOne({ _id: productid });
-
-    if (!user)
-      return res.status(400).send('no user found');
-    else {
-      if (!user.cart) {
-        user.cart = [];
-      }
-      const itemIndex = user.cart.findIndex(i =>
-        i.productid.toString() === productid);
-
-      if (user.cart[itemIndex].quantity > 1) {
-        user.cart[itemIndex].quantity -= 1;
-        product.stock += 1;
-
-        await user.save();
-        await product.save();
-        res.status(200).json(user);
-
-      } else {
-        return res.status(400).send('Cannot reduce quantity below 1');
-
-      }
+// ✅ Update user
+router.put("/:id", async (req, res) => {
+    try {
+        const { Fname, Lname, email, password } = req.body;
+        const updatedUser = await User.findByIdAndUpdate(
+            req.params.id,
+            { Fname, Lname, email, password },
+            { new: true }
+        );
+        if (!updatedUser) return res.status(404).json({ message: "User not found" });
+        res.json(updatedUser);
+    } catch (error) {
+        res.status(500).json({ message: "Server error", error });
     }
-  }
-  catch (err) {
-    res.status(400).send({ error: err.message });
-  }
-})
+});
 
-router.delete('/empty-cart', async (req, res) => {
-  try {
-    const { userid } = req.query;
-    const user = await User.findOne({ _id: userid });
-    //find returns an array, findOne returns a single object
-
-    if (!user)
-      return res.status(400).send('no user found');
-
-    else {
-      user.cart = [];
-      await user.save();
-      res.status(200).json(user);
+// ✅ Delete user
+router.delete("/:id", async (req, res) => {
+    try {
+        const deleted = await User.findByIdAndDelete(req.params.id);
+        if (!deleted) return res.status(404).json({ message: "User not found" });
+        res.json({ message: "User deleted successfully" });
+    } catch (error) {
+        res.status(500).json({ message: "Server error", error });
     }
-  }
-  catch (err) {
-    res.status(400).send({ error: err.message });
-  }
-})
-
-router.get('/:userid', async (req, res) => {
-  try {
-    const { userid } = req.params;
-
-    const user = await User.find({ _id: userid });
-    if (!user) res.status(400).send('User not found.');
-    res.status(200).json(user);
-  }
-  catch (err) {
-    res.status(400).send({ error: err.message });
-  }
-})
+});
 
 module.exports = router;
