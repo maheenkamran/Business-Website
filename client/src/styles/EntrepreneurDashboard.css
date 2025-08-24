@@ -1,47 +1,111 @@
+/* Overall dashboard container */
 .entrepreneur-dashboard {
-    padding: 20px;
+    padding: 2rem;
+    background: #f9fafb;
+    min-height: 100vh;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Heading */
+.entrepreneur-dashboard h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Profile button */
+.entrepreneur-dashboard>button {
+    background: #2563eb;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    transition: background 0.3s ease;
+}
+
+.entrepreneur-dashboard>button:hover {
+    background: #1e40af;
+}
+
+/* Request cards grid */
 .request-cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
 }
 
+/* Each request card */
 .request-card {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 15px;
-    width: 300px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.request-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Investor name */
 .request-card h3 {
-    margin-bottom: 10px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.5rem;
 }
 
+/* Card text */
 .request-card p {
-    margin: 5px 0;
+    font-size: 0.95rem;
+    color: #4b5563;
+    margin: 0.25rem 0;
 }
 
+.request-card strong {
+    color: #111827;
+}
+
+/* Action buttons */
 .request-actions {
-    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.8rem;
+    margin-top: 1rem;
 }
 
 .request-actions button {
-    margin-right: 10px;
-    padding: 8px 12px;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
     border: none;
-    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .request-actions button:first-child {
-    background-color: #28a745;
+    background: #16a34a;
+    /* green */
     color: white;
 }
 
+.request-actions button:first-child:hover {
+    background: #15803d;
+}
+
 .request-actions button:last-child {
-    background-color: #dc3545;
+    background: #dc2626;
+    /* red */
     color: white;
+}
+
+.request-actions button:last-child:hover {
+    background: #b91c1c;
 }

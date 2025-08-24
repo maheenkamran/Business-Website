@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ import useNavigate
 import "./../styles/InvestorDashboard.css";
 
 const InvestorDashboard = () => {
     const [entrepreneurs, setEntrepreneurs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const navigate = useNavigate();
+    const InvId = JSON.parse(localStorage.getItem("user"))?._id;
 
     useEffect(() => {
         const fetchEntrepreneurs = async () => {
@@ -36,17 +39,35 @@ const InvestorDashboard = () => {
 
     return (
         <div className="investor-dashboard">
+            {/* ✅ navigate to investor profile */}
+            <button onClick={() => navigate(`/profile/investor/${InvId}`)}>
+                Profile
+            </button>
+
             <h2>Investor Dashboard</h2>
+            <h3>All entrepreneurs:</h3>
             <div className="entrepreneur-cards">
                 {entrepreneurs.length > 0 ? (
                     entrepreneurs.map((entrepreneur) => (
-                        <div key={entrepreneur._id} className="entrepreneur-card">
+                        <div
+                            key={entrepreneur._id}
+                            className="entrepreneur-card"
+                            onClick={() => navigate(`/profile/entrepreneur/${entrepreneur._id}`)}
+                        >
                             <h3>{entrepreneur.Fname} {entrepreneur.Lname}</h3>
                             <p><strong>Email:</strong> {entrepreneur.email}</p>
                             <p><strong>Startup:</strong> {entrepreneur.startup || "N/A"}</p>
                             <p><strong>Pitch Summary:</strong> {entrepreneur.pitch || "N/A"}</p>
-                            <button onClick={() => handleMessage(entrepreneur._id)}>Message / Request</button>
+                            <button
+                                onClick={(e) => {
+                                    e.stopPropagation(); // prevent navigating when button clicked
+                                    handleMessage(entrepreneur._id);
+                                }}
+                            >
+                                Message / Request
+                            </button>
                         </div>
+
                     ))
                 ) : (
                     <p>No entrepreneurs found.</p>

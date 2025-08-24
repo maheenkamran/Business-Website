@@ -1,12 +1,11 @@
+// src/pages/Requests.js
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ import useNavigate
-import "./../styles/EntrepreneurDashboard.css";
+import "./../styles/Requests.css";
 
-const EntrepreneurDashboard = () => {
+const Requests = () => {
     const [requests, setRequests] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
-    const navigate = useNavigate();
 
     // Get entrepreneur ID from logged-in user in localStorage
     const entrepreneurId = JSON.parse(localStorage.getItem("user"))?._id;
@@ -19,7 +18,6 @@ const EntrepreneurDashboard = () => {
                 return;
             }
 
-            setLoading(true);
             try {
                 const response = await fetch(
                     `http://localhost:3000/api/requests/entrepreneur/${entrepreneurId}`
@@ -27,7 +25,6 @@ const EntrepreneurDashboard = () => {
                 const data = await response.json();
 
                 if (response.ok) {
-                    // Ensure data.requests is always an array
                     setRequests(Array.isArray(data.requests) ? data.requests : []);
                 } else {
                     setError(data.message || "Failed to fetch requests");
@@ -72,29 +69,18 @@ const EntrepreneurDashboard = () => {
     if (error) return <p>{error}</p>;
 
     return (
-        <div className="entrepreneur-dashboard">
-            <button onClick={() => navigate(`/profile/entrepreneur/${entrepreneurId}`)}>
-                Profile
-            </button>
-            <h2>Entrepreneur Dashboard</h2>
+        <div className="requests-page">
+            <h2>Collaboration Requests</h2>
             <div className="request-cards">
                 {requests.length > 0 ? (
                     requests.map((req) => (
-                        <div key={req._id} className="request-card"
-                        // onClick={() => navigate(`/profile/investor/${req._id}`)}
-                        >
+                        <div key={req._id} className="request-card">
                             <h3>
                                 {req.investor?.Fname} {req.investor?.Lname}
                             </h3>
-                            <p>
-                                <strong>Email:</strong> {req.investor?.email}
-                            </p>
-                            <p>
-                                <strong>Message:</strong> {req.message || "No message"}
-                            </p>
-                            <p>
-                                <strong>Status:</strong> {req.status}
-                            </p>
+                            <p><strong>Email:</strong> {req.investor?.email}</p>
+                            <p><strong>Message:</strong> {req.message || "No message"}</p>
+                            <p><strong>Status:</strong> {req.status}</p>
 
                             {req.status === "Pending" && (
                                 <div className="request-actions">
@@ -120,4 +106,4 @@ const EntrepreneurDashboard = () => {
     );
 };
 
-export default EntrepreneurDashboard;
+export default Requests;
