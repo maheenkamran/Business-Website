@@ -1,28 +1,10 @@
 const mongoose = require("mongoose");
 
-const requestSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    requestType: {
-        type: String,
-        required: true
-    },
-    details: {
-        type: String,
-        required: true
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    }
-});
+const RequestSchema = new mongoose.Schema({
+    investor: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    entrepreneur: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    message: { type: String, default: "" },
+    status: { type: String, enum: ["Pending", "Accepted", "Rejected"], default: "Pending" }
+}, { timestamps: true });
 
-const Request = mongoose.model("Request", requestSchema);
-
-module.exports = Request;
+module.exports = mongoose.model("Request", RequestSchema);

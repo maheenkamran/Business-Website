@@ -1,49 +1,89 @@
 const express = require("express");
-const Request = require("../models/Request");
-
 const router = express.Router();
+const Request = require("../models/Request");
+const User = require("../models/User");
 
-// Create new request
+/**
+ * POST /api/requests
+ * Create a new collaboration request from an investor to an entrepreneur
+ * body: { investorId, entrepreneurId, message }
+ */
 router.post("/", async (req, res) => {
+    const { investor, entrepreneur, message, status } = req.body;
+
+    if (!investor || !entrepreneur) {
+        return res.status(400).json({ message: "Investor and Entrepreneur IDs are required" });
+    }
+
     try {
-        const { name, email, requestType, details } = req.body;
-        const newRequest = new Request({ name, email, requestType, details });
-        await newRequest.save();
-        res.status(201).json(newRequest);
+        const newRequest = new Request({ investor, entrepreneur, message, status });
+        const savedRequest = await newRequest.save();
+        res.status(201).json(savedRequest);
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        console.error(err);
+        res.status(500).json({ message: "Failed to create request" });
     }
 });
 
-// Get all requests
-router.get("/", async (req, res) => {
+
+/**
+ * GET /api/requests/entrepreneur/:entrepreneurId
+ * Fetch all requests sent to a specific entrepreneur
+ */
+router.get("/entrepreneur/:entrepreneurId", async (req, res) => {
     try {
-        const requests = await Request.find();
-        res.json(requests);
+        const requests = await Request.find({ entrepreneur: req.params.entrepreneurId })
+            .populate("investor", "Fname Lname email");
+
+        // Always return an array
+        res.status(200).json({ requests: requests || [] });
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        console.error(err);
+        res.status(500).json({ message: "Failed to fetch requests" });
     }
 });
 
-// Get request by ID
-router.get("/:id", async (req, res) => {
+
+/**
+ * GET /api/requests/investor/:investorId
+ * Fetch all requests sent by a specific investor
+ */
+router.get("/investor/:investorId", async (req, res) => {
     try {
-        const request = await Request.findById(req.params.id);
-        if (!request) return res.status(404).json({ error: "Request not found" });
-        res.json(request);
+        const requests = await Request.find({ investor: req.params.investorId })
+            .populate("entrepreneur", "Fname Lname email startup pitch");
+
+        res.status(200).json({ requests });
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        console.error(err);
+        res.status(500).json({ message: "Failed to fetch requests" });
     }
 });
 
-// Delete request
-router.delete("/:id", async (req, res) => {
+/**
+ * PUT /api/requests/:requestId/status
+ * Update the status of a request (Accept or Reject)
+ * body: { status: "Accepted" | "Rejected" }
+ */
+router.put("/:requestId/status", async (req, res) => {
+    const { status } = req.body;
+
+    if (!["Accepted", "Rejected"].includes(status)) {
+        return res.status(400).json({ message: "Invalid status" });
+    }
+
     try {
-        const deleted = await Request.findByIdAndDelete(req.params.id);
-        if (!deleted) return res.status(404).json({ error: "Request not found" });
-        res.json({ message: "Request deleted successfully" });
+        const request = await Request.findByIdAndUpdate(
+            req.params.requestId,
+            { status },
+            { new: true }
+        );
+        if (!request) return res.status(404).json({ message: "Request not found" });
+
+        res.status(200).json({ request });
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        console.error(err);
+        res.status(500).json({ message: "Failed to update request status" });
     }
 });
 

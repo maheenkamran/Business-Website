@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./../styles/Login.css"; // CSS file
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -23,6 +25,18 @@ const Login = () => {
             if (response.ok) {
                 setMessage("✅ Login successful!");
                 console.log("User logged in:", data.user);
+
+                // Save user to localStorage for other components
+                localStorage.setItem("user", JSON.stringify(data.user));
+
+                // Redirect based on role
+                if (data.user.role === "Investor") {
+                    navigate("/dashboard/investor");
+                } else if (data.user.role === "Entrepreneur") {
+                    navigate("/dashboard/entrepreneur");
+                } else {
+                    setMessage("⚠️ Unknown role");
+                }
             } else {
                 setMessage(`❌ ${data.message || "Login failed"}`);
             }

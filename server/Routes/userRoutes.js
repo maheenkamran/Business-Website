@@ -5,11 +5,23 @@ const User = require("../models/User");
 // ✅ Register user
 router.post("/register", async (req, res) => {
     try {
-        const { Fname, Lname, email, password, role } = req.body;
+        const {
+            Fname,
+            Lname,
+            email,
+            password,
+            role,
+            bio,
+            startupDescription,
+            fundingNeed,
+            pitchDeck,
+            investmentInterests,
+            portfolioCompanies
+        } = req.body;
 
         // validation
-        if (!Fname || !Lname || !email || !password) {
-            return res.status(400).json({ message: "All fields are required" });
+        if (!Fname || !Lname || !email || !password || !role) {
+            return res.status(400).json({ message: "All required fields are missing" });
         }
 
         // check duplicate email
@@ -18,13 +30,18 @@ router.post("/register", async (req, res) => {
             return res.status(400).json({ message: "Email already exists" });
         }
 
-        // assign role, default to "user" if not given
         const newUser = new User({
             Fname,
             Lname,
             email,
             password,
-            role: role || "user"
+            role,
+            bio: bio || "",
+            startupDescription: startupDescription || "",
+            fundingNeed: fundingNeed || 0,
+            pitchDeck: pitchDeck || "",
+            investmentInterests: investmentInterests || "",
+            portfolioCompanies: portfolioCompanies || []
         });
 
         await newUser.save();
@@ -34,7 +51,6 @@ router.post("/register", async (req, res) => {
         res.status(500).json({ message: "Server error", error });
     }
 });
-
 
 // ✅ Login user
 router.post("/login", async (req, res) => {
@@ -62,6 +78,17 @@ router.get("/", async (req, res) => {
     }
 });
 
+// ✅ Get all entrepreneurs
+router.get("/e", async (req, res) => {
+    try {
+        const entrepreneurs = await User.find({ role: "Entrepreneur" });
+        res.status(200).json({ entrepreneurs });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Failed to fetch entrepreneurs" });
+    }
+});
+
 // ✅ Get user by ID
 router.get("/:id", async (req, res) => {
     try {
@@ -76,13 +103,38 @@ router.get("/:id", async (req, res) => {
 // ✅ Update user
 router.put("/:id", async (req, res) => {
     try {
-        const { Fname, Lname, email, password } = req.body;
+        const {
+            Fname,
+            Lname,
+            email,
+            password,
+            bio,
+            startupDescription,
+            fundingNeed,
+            pitchDeck,
+            investmentInterests,
+            portfolioCompanies
+        } = req.body;
+
         const updatedUser = await User.findByIdAndUpdate(
             req.params.id,
-            { Fname, Lname, email, password },
+            {
+                Fname,
+                Lname,
+                email,
+                password,
+                bio,
+                startupDescription,
+                fundingNeed,
+                pitchDeck,
+                investmentInterests,
+                portfolioCompanies
+            },
             { new: true }
         );
+
         if (!updatedUser) return res.status(404).json({ message: "User not found" });
+
         res.json(updatedUser);
     } catch (error) {
         res.status(500).json({ message: "Server error", error });

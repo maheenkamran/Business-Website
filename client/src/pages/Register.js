@@ -8,6 +8,12 @@ export default function Register() {
         email: "",
         password: "",
         role: "Investor", // default role
+        bio: "",
+        startupDescription: "",
+        fundingNeed: "",
+        pitchDeck: "",
+        investmentInterests: "",
+        portfolioCompanies: ""
     });
 
     const [message, setMessage] = useState("");
@@ -18,18 +24,30 @@ export default function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Prepare portfolioCompanies as array
+        const bodyData = {
+            ...formData,
+            fundingNeed: formData.fundingNeed ? Number(formData.fundingNeed) : 0,
+            portfolioCompanies:
+                formData.portfolioCompanies
+                    .split(",")
+                    .map((c) => c.trim())
+                    .filter((c) => c) || []
+        };
+
         try {
             const res = await fetch("http://localhost:3000/api/users/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
+                body: JSON.stringify(bodyData),
             });
 
             const data = await res.json();
             if (res.ok) {
                 setMessage(data.message || "Registration successful!");
             } else {
-                setMessage(data.error || "Something went wrong");
+                setMessage(data.message || "Something went wrong");
             }
         } catch (err) {
             setMessage("Server error. Try again later.");
@@ -83,6 +101,63 @@ export default function Register() {
                     <option value="Investor">Investor</option>
                     <option value="Entrepreneur">Entrepreneur</option>
                 </select>
+
+                {/* Entrepreneur fields */}
+                {formData.role === "Entrepreneur" && (
+                    <>
+                        <textarea
+                            name="bio"
+                            placeholder="Bio"
+                            value={formData.bio}
+                            onChange={handleChange}
+                        />
+                        <textarea
+                            name="startupDescription"
+                            placeholder="Startup Description"
+                            value={formData.startupDescription}
+                            onChange={handleChange}
+                        />
+                        <input
+                            type="number"
+                            name="fundingNeed"
+                            placeholder="Funding Needed"
+                            value={formData.fundingNeed}
+                            onChange={handleChange}
+                        />
+                        <input
+                            type="text"
+                            name="pitchDeck"
+                            placeholder="Pitch Deck URL"
+                            value={formData.pitchDeck}
+                            onChange={handleChange}
+                        />
+                    </>
+                )}
+
+                {/* Investor fields */}
+                {formData.role === "Investor" && (
+                    <>
+                        <textarea
+                            name="bio"
+                            placeholder="Bio"
+                            value={formData.bio}
+                            onChange={handleChange}
+                        />
+                        <textarea
+                            name="investmentInterests"
+                            placeholder="Investment Interests (comma separated)"
+                            value={formData.investmentInterests}
+                            onChange={handleChange}
+                        />
+                        <input
+                            type="text"
+                            name="portfolioCompanies"
+                            placeholder="Portfolio Companies (comma separated)"
+                            value={formData.portfolioCompanies}
+                            onChange={handleChange}
+                        />
+                    </>
+                )}
 
                 <button type="submit">Register</button>
             </form>
