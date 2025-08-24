@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ import useNavigate
+import { useNavigate } from "react-router-dom";
 import "./../styles/InvestorDashboard.css";
 
 const InvestorDashboard = () => {
     const [entrepreneurs, setEntrepreneurs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const [showPopup, setShowPopup] = useState(false);
+    const [selectedEntrepreneur, setSelectedEntrepreneur] = useState(null);
+    const [message, setMessage] = useState("");
+
     const navigate = useNavigate();
     const InvId = JSON.parse(localStorage.getItem("user"))?._id;
 
@@ -30,8 +34,38 @@ const InvestorDashboard = () => {
         fetchEntrepreneurs();
     }, []);
 
-    const handleMessage = (entrepreneurId) => {
-        alert(`Send message/request to entrepreneur ID: ${entrepreneurId}`);
+    // ✅ open popup
+    const handleMessage = (entrepreneur) => {
+        setSelectedEntrepreneur(entrepreneur);
+        setShowPopup(true);
+    };
+
+    // ✅ send request
+    const handleSend = async () => {
+        if (!selectedEntrepreneur) return;
+
+        try {
+            const response = await fetch("http://localhost:3000/api/requests", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    investor: InvId,
+                    entrepreneur: selectedEntrepreneur._id,
+                    message: message || "", // optional
+                }),
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                alert("Request sent successfully!");
+                setShowPopup(false);
+                setMessage("");
+            } else {
+                alert(data.message || "Failed to send request");
+            }
+        } catch (err) {
+            alert("Error: " + err.message);
+        }
     };
 
     if (loading) return <p>Loading entrepreneurs...</p>;
@@ -39,7 +73,6 @@ const InvestorDashboard = () => {
 
     return (
         <div className="investor-dashboard">
-            {/* ✅ navigate to investor profile */}
             <button onClick={() => navigate(`/profile/investor/${InvId}`)}>
                 Profile
             </button>
@@ -60,19 +93,36 @@ const InvestorDashboard = () => {
                             <p><strong>Pitch Summary:</strong> {entrepreneur.pitch || "N/A"}</p>
                             <button
                                 onClick={(e) => {
-                                    e.stopPropagation(); // prevent navigating when button clicked
-                                    handleMessage(entrepreneur._id);
+                                    e.stopPropagation();
+                                    handleMessage(entrepreneur);
                                 }}
                             >
                                 Message / Request
                             </button>
                         </div>
-
                     ))
                 ) : (
                     <p>No entrepreneurs found.</p>
                 )}
             </div>
+
+            {/* ✅ Popup Modal */}
+            {showPopup && (
+                <div className="popup-overlay">
+                    <div className="popup">
+                        <h3>Send Request to {selectedEntrepreneur.Fname}</h3>
+                        <textarea
+                            placeholder="Enter your message (optional)"
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
+                        />
+                        <div className="popup-actions">
+                            <button onClick={handleSend}>Send</button>
+                            <button onClick={() => setShowPopup(false)}>Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

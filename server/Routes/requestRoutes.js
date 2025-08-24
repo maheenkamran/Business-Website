@@ -9,14 +9,14 @@ const User = require("../models/User");
  * body: { investorId, entrepreneurId, message }
  */
 router.post("/", async (req, res) => {
-    const { investor, entrepreneur, message, status } = req.body;
+    const { investor, entrepreneur, message } = req.body;
 
     if (!investor || !entrepreneur) {
         return res.status(400).json({ message: "Investor and Entrepreneur IDs are required" });
     }
 
     try {
-        const newRequest = new Request({ investor, entrepreneur, message, status });
+        const newRequest = new Request({ investor, entrepreneur, message });
         const savedRequest = await newRequest.save();
         res.status(201).json(savedRequest);
     } catch (err) {

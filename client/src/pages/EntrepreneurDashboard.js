@@ -81,7 +81,7 @@ const EntrepreneurDashboard = () => {
                 {requests.length > 0 ? (
                     requests.map((req) => (
                         <div key={req._id} className="request-card"
-                        // onClick={() => navigate(`/profile/investor/${req._id}`)}
+                            onClick={() => navigate(`/profile/investor/${req.investor?._id}`)}
                         >
                             <h3>
                                 {req.investor?.Fname} {req.investor?.Lname}

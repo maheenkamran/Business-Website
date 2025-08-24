@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import "./../styles/InvestorProfile.css";
 
 const InvestorProfile = () => {
+    const { id } = useParams(); // ✅ get investor id from route
     const [investor, setInvestor] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // get the logged-in user data from localStorage
-        const user = JSON.parse(localStorage.getItem("user"));
-
-        if (user && user._id) {
-            fetch(`http://localhost:3000/api/users/${user._id}`)
+        if (id) {
+            fetch(`http://localhost:3000/api/users/${id}`)
                 .then((res) => res.json())
                 .then((data) => {
                     setInvestor(data);
@@ -23,7 +22,7 @@ const InvestorProfile = () => {
         } else {
             setLoading(false);
         }
-    }, []);
+    }, [id]); // ✅ depend on id
 
     if (loading) {
         return <p>Loading profile...</p>;
