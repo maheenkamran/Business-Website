@@ -1,0 +1,43 @@
+.about-page {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #f9f9f9;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.about-header {
+    background: #ff7f00;
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.about-container {
+    flex: 1;
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.about-container h2 {
+    margin-top: 2rem;
+    color: #ff7f00;
+}
+
+.about-container ul {
+    margin: 1rem 0;
+    padding-left: 1.2rem;
+}
+
+.about-container li {
+    margin-bottom: 0.8rem;
+}
+
+.join {
+    margin-top: 2rem;
+    font-style: italic;
+    text-align: center;
+}

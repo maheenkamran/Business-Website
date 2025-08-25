@@ -1,5 +1,5 @@
 .header {
-    background-color: #333;
+    background-color: #d8730e;
     color: white;
     padding: 15px 20px;
     display: flex;
@@ -9,6 +9,7 @@
 
 .logo {
     margin: 0;
+    cursor: pointer;
 }
 
 .nav-links {
@@ -23,11 +24,11 @@
 }
 
 .nav-links li a:hover {
-    text-decoration: underline;
+    text-decoration: und erline;
 }
 
 .footer {
-    background-color: #333;
+    background-color: #d8730e;
     color: white;
     text-align: center;
     padding: 15px;

@@ -1,36 +1,97 @@
-.homepage-container {
-    position: relative;
-    text-align: center;
-    min-height: 80vh;
-    /* so footer doesn’t overlap */
-}
-
-.slide img {
-    width: 100%;
-    height: 500px;
-}
-
-/* Center buttons */
-.button-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.homepage {
     display: flex;
-    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 0px 50px 70px;
+    height: 400px;
+    background: #f4f1f1;
+    font-family: "Arial", sans-serif;
 }
 
-.home-btn {
-    background-color: #ececec;
-    color: rgb(0, 0, 0);
+/* Left Section */
+.homepage-left {
+    flex: 1;
+    padding-right: 40px;
+}
+
+.join-text {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #ff7f00;
+    text-transform: uppercase;
+}
+
+.homepage-left h1 {
+    font-size: 2.5rem;
+    margin: 15px 0;
+    line-height: 1.3;
+}
+
+.homepage-left .highlight {
+    color: #ff7f00;
+}
+
+.homepage-left p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.homepage-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-primary {
+    background: #ff7f00;
+    color: white;
+    padding: 10px 20px;
     border: none;
-    padding: 12px 25px;
-    font-size: 18px;
-    border-radius: 8px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background 0.3s;
+    font-size: 1rem;
 }
 
-.home-btn:hover {
-    background-color: #aeaeae;
+.btn-primary:hover {
+    background: #e66e00;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #333;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn-secondary:hover {
+    border-color: #ff7f00;
+    color: #ff7f00;
+}
+
+/* Right Section */
+.homepage-right {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    padding: 15px;
+    text-align: center;
+    width: 325px;
+}
+
+.profile-card .profile-pic {
+    width: 100%;
+    border-radius: 12px;
 }

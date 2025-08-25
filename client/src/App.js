@@ -8,6 +8,9 @@ import InvestorProfile from "./pages/InvestorProfile";
 import EntrepreneurProfile from "./pages/EntrepreneurProfile";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Messages from "./pages/Messages";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
@@ -21,6 +24,9 @@ function App() {
         <Route path="/dashboard/entrepreneur" element={<EntrepreneurDashboard />} />
         <Route path="/profile/investor/:id" element={<InvestorProfile />} />
         <Route path="/profile/entrepreneur/:id" element={<EntrepreneurProfile />} />
+        <Route path="/messages" element={<Messages />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
       <Footer />
     </Router>

@@ -35,7 +35,7 @@
 
 .register-form button {
     padding: 10px;
-    background: #007bff;
+    background: #ff7f00;
     border: none;
     color: white;
     border-radius: 6px;
@@ -45,7 +45,7 @@
 }
 
 .register-form button:hover {
-    background: #0056b3;
+    background: #bc5f02;
 }
 
 .msg {
@@ -68,8 +68,8 @@
 }
 
 .register-form select:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
+    border-color: #d1b654;
+    box-shadow: 0 0 4px rgba(255, 174, 0, 0.4);
 }
 
 .register-form option {

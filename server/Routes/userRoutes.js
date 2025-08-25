@@ -77,6 +77,16 @@ router.get("/", async (req, res) => {
         res.status(500).json({ message: "Server error", error });
     }
 });
+// ✅ Get all investors
+router.get("/i", async (req, res) => {
+    try {
+        const investors = await User.find({ role: "Investor" });
+        res.status(200).json({ investors });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Failed to fetch investors" });
+    }
+});
 
 // ✅ Get all entrepreneurs
 router.get("/e", async (req, res) => {
