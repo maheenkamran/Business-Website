@@ -1,7 +1,9 @@
 /* Overall dashboard container */
 .entrepreneur-dashboard {
-    padding: 2rem;
-    background: #f9fafb;
+
+    padding: 30px 50px 30px 50px;
+    margin: 30px 70px 30px 70px;
+    background-color: rgb(248, 233, 221);
     min-height: 100vh;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -36,15 +38,17 @@
 .request-cards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.5rem;
+    gap: 50px;
 }
 
 /* Each request card */
 .request-card {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    padding: 1.5rem;
+    border: 1px solid #b2b1b1;
+    border-radius: 10px;
+    padding: 10px 20px 10px 20px;
+    width: 430px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: rgb(250, 205, 166);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -78,6 +82,7 @@
     justify-content: flex-end;
     gap: 0.8rem;
     margin-top: 1rem;
+    margin-bottom: 10px;
 }
 
 .request-actions button {

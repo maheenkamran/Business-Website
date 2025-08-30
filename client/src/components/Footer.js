@@ -4,7 +4,7 @@ import "./../styles/HF.css"; // CSS file
 function Footer() {
     return (
         <footer className="footer">
-            <p>© {new Date().getFullYear()} My Website. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Business Nexus. All rights reserved.</p>
         </footer>
     );
 }

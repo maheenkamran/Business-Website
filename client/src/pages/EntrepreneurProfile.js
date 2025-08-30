@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./../styles/EntrepreneurProfile.css";
 
 const EntrepreneurProfile = () => {
+    const navigate = useNavigate();
     const { id } = useParams(); // ✅ get entrepreneur id from route
     const [entrepreneur, setEntrepreneur] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -28,27 +30,31 @@ const EntrepreneurProfile = () => {
     if (!entrepreneur) return <p>No entrepreneur profile found</p>;
 
     return (
-        <div className="entrepreneur-profile">
-            <h2>{entrepreneur.Fname} {entrepreneur.Lname}</h2>
-            <p><strong>Email:</strong> {entrepreneur.email}</p>
+        <div className="ep-page">
+            <div className="entrepreneur-profile">
+                <h2>{entrepreneur.Fname} {entrepreneur.Lname}</h2>
+                <p><strong>Email:</strong> {entrepreneur.email}</p>
 
-            <h3>Bio</h3>
-            <p>{entrepreneur.bio || "Bio not provided"}</p>
+                <h3>Bio</h3>
+                <p>{entrepreneur.bio || "Bio not provided"}</p>
 
-            <h3>Startup Description</h3>
-            <p>{entrepreneur.startupDescription || "No startup description available"}</p>
+                <h3>Startup Description</h3>
+                <p>{entrepreneur.startupDescription || "No startup description available"}</p>
 
-            <h3>Funding Need</h3>
-            <p>{entrepreneur.fundingNeed ? `$${entrepreneur.fundingNeed}` : "Not specified"}</p>
+                <h3>Funding Need</h3>
+                <p>{entrepreneur.fundingNeed ? `$${entrepreneur.fundingNeed}` : "Not specified"}</p>
 
-            <h3>Pitch Deck</h3>
-            {entrepreneur.pitchDeck ? (
-                <a href={entrepreneur.pitchDeck} target="_blank" rel="noopener noreferrer">
-                    View Pitch Deck
-                </a>
-            ) : (
-                <p>No pitch deck uploaded</p>
-            )}
+                <h3>Pitch Deck</h3>
+                {entrepreneur.pitchDeck ? (
+                    <a href={entrepreneur.pitchDeck} target="_blank" rel="noopener noreferrer">
+                        View Pitch Deck
+                    </a>
+                ) : (
+                    <p>No pitch deck uploaded</p>
+                )}
+                <div className="logout-e" >Logout</div>
+                <div className="back-di" onClick={() => { navigate("/dashboard/investor") }}>Back to Dashboard</div>
+            </div>
         </div>
     );
 };

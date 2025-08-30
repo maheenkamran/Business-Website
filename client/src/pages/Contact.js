@@ -73,9 +73,7 @@ const Contact = () => {
                 {status && <p className="status">{status}</p>}
             </main>
 
-            <footer className="contact-footer">
-                <p>&copy; 2025 [Your Company/Community Name]. All rights reserved.</p>
-            </footer>
+
         </div>
     );
 };

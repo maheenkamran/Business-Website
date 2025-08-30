@@ -1,19 +1,55 @@
 .investor-dashboard {
-    padding: 20px;
+    padding: 30px 50px 30px 50px;
+    margin: 30px 70px 30px 70px;
+    background-color: rgb(248, 233, 221);
+}
+
+.id-header {
+    display: flex;
+    flex-direction: row;
+}
+
+.id-header div {
+    margin-top: 15px;
+    margin-left: auto;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid #ef9b47;
+    background-color: #ef9b47;
+    border-radius: 10px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.id-header div:hover {
+    cursor: pointer;
+    background-color: rgb(181, 128, 28);
+}
+
+.fa-solid.fa-user {
+    margin-right: 10px;
 }
 
 .entrepreneur-cards {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 50px;
 }
 
 .entrepreneur-card {
-    border: 1px solid #ccc;
+    border: 1px solid #b2b1b1;
     border-radius: 10px;
-    padding: 15px;
-    width: 250px;
+    padding: 10px 20px 10px 20px;
+    width: 430px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: rgb(250, 205, 166);
+}
+
+.entrepreneur-card:hover {
+    background-color: rgb(251, 225, 194);
+    cursor: pointer;
 }
 
 .entrepreneur-card h3 {
@@ -26,16 +62,17 @@
 
 .entrepreneur-card button {
     margin-top: 10px;
+    margin-bottom: 10px;
     padding: 8px 12px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
+    background-color: rgb(173, 114, 3);
     color: white;
     cursor: pointer;
 }
 
 .entrepreneur-card button:hover {
-    background-color: #0056b3;
+    background-color: orange;
 }
 
 .popup-overlay {
@@ -69,4 +106,28 @@
     display: flex;
     justify-content: flex-end;
     gap: 10px;
+}
+
+.success-msg {
+    background: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border: 1px solid #c3e6cb;
+    border-radius: 8px;
+    text-align: center;
+    margin: 15px auto;
+    width: fit-content;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

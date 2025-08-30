@@ -57,7 +57,6 @@ const InvestorDashboard = () => {
 
             const data = await response.json();
             if (response.ok) {
-                alert("Request sent successfully!");
                 setShowPopup(false);
                 setMessage("");
             } else {
@@ -73,11 +72,14 @@ const InvestorDashboard = () => {
 
     return (
         <div className="investor-dashboard">
-            <button onClick={() => navigate(`/profile/investor/${InvId}`)}>
-                Profile
-            </button>
 
-            <h2>Investor Dashboard</h2>
+            <div className="id-header">
+                <h2>Investor Dashboard</h2>
+                <div onClick={() => navigate(`/profile/investor/${InvId}`)}>
+                    <i className="fa-solid fa-user"></i>
+                    View Your Profile
+                </div>
+            </div>
             <h3>All entrepreneurs:</h3>
             <div className="entrepreneur-cards">
                 {entrepreneurs.length > 0 ? (
@@ -87,10 +89,12 @@ const InvestorDashboard = () => {
                             className="entrepreneur-card"
                             onClick={() => navigate(`/profile/entrepreneur/${entrepreneur._id}`)}
                         >
-                            <h3>{entrepreneur.Fname} {entrepreneur.Lname}</h3>
+                            <h3>
+                                <i className="fa-solid fa-user"></i>
+                                {entrepreneur.Fname} {entrepreneur.Lname}</h3>
                             <p><strong>Email:</strong> {entrepreneur.email}</p>
-                            <p><strong>Startup:</strong> {entrepreneur.startup || "N/A"}</p>
-                            <p><strong>Pitch Summary:</strong> {entrepreneur.pitch || "N/A"}</p>
+                            <p><strong>Bio:</strong> {entrepreneur.bio || "N/A"}</p>
+                            <p><strong>Start Up:</strong> {entrepreneur.startupDescription || "N/A"}</p>
                             <button
                                 onClick={(e) => {
                                     e.stopPropagation();

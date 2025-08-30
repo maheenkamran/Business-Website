@@ -73,10 +73,13 @@ const EntrepreneurDashboard = () => {
 
     return (
         <div className="entrepreneur-dashboard">
-            <button onClick={() => navigate(`/profile/entrepreneur/${entrepreneurId}`)}>
-                Profile
-            </button>
-            <h2>Entrepreneur Dashboard</h2>
+            <div className="id-header">
+                <h2>Entrepreneur Dashboard</h2>
+                <div onClick={() => navigate(`/profile/entrepreneur/${entrepreneurId}`)}>
+                    <i className="fa-solid fa-user"></i>
+                    View Your Profile
+                </div>
+            </div>
             <div className="request-cards">
                 {requests.length > 0 ? (
                     requests.map((req) => (
@@ -84,6 +87,7 @@ const EntrepreneurDashboard = () => {
                             onClick={() => navigate(`/profile/investor/${req.investor?._id}`)}
                         >
                             <h3>
+                                <i className="fa-solid fa-user"></i>
                                 {req.investor?.Fname} {req.investor?.Lname}
                             </h3>
                             <p>
