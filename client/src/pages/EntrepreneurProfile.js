@@ -26,6 +26,11 @@ const EntrepreneurProfile = () => {
         }
     }, [id]);
 
+    const handleLogout = () => {
+        localStorage.removeItem("user");  // ✅ remove user from localStorage
+        navigate("/");               // ✅ redirect to login page
+    };
+
     if (loading) return <p>Loading profile...</p>;
     if (!entrepreneur) return <p>No entrepreneur profile found</p>;
 
@@ -52,7 +57,7 @@ const EntrepreneurProfile = () => {
                 ) : (
                     <p>No pitch deck uploaded</p>
                 )}
-                <div className="logout-e" >Logout</div>
+                <div className="logout-e" onClick={() => { handleLogout() }}>Logout</div>
                 <div className="back-di" onClick={() => { navigate("/dashboard/investor") }}>Back to Dashboard</div>
             </div>
         </div>

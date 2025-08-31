@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./../styles/InvestorProfile.css";
 
 const InvestorProfile = () => {
     const navigate = useNavigate();
 
-    const { id } = useParams(); // ✅ get investor id from route
+    const { id } = useParams();
     const [investor, setInvestor] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -25,7 +24,12 @@ const InvestorProfile = () => {
         } else {
             setLoading(false);
         }
-    }, [id]); // ✅ depend on id
+    }, [id]);
+
+    const handleLogout = () => {
+        localStorage.removeItem("user");  // ✅ remove user from localStorage
+        navigate("/");               // ✅ redirect to login page
+    };
 
     if (loading) {
         return <p>Loading profile...</p>;
@@ -43,8 +47,13 @@ const InvestorProfile = () => {
                 <p><strong>Bio:</strong> {investor.bio || "Not provided"}</p>
                 <p><strong>Investment Interests:</strong> {investor.investmentInterests || "Not provided"}</p>
                 <p><strong>Portfolio Companies:</strong> {investor.portfolioCompanies?.join(", ") || "None"}</p>
-                <div className="logout-i" >Logout</div>
-                <div className="back-di" onClick={() => { navigate("/dashboard/investor") }}>Back to Dashboard</div></div>
+
+                <div className="logout-i" onClick={handleLogout}>Logout</div>
+
+                <div className="back-di" onClick={() => navigate("/dashboard/investor")}>
+                    Back to Dashboard
+                </div>
+            </div>
         </div>
     );
 };
